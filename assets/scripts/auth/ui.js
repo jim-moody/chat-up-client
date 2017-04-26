@@ -1,5 +1,47 @@
 'use strict'
 import store from '../store'
+
+const signUpSuccess = (data) => {
+  // clear any alerts
+  // hideAllAlerts()
+
+  // hide the loader and show the button again
+  // hideFormLoader(authSelectors.signUp)
+
+  // get the credentials the user entered when signing up
+  // so we can sign the user in automatically
+  // const credentials = {
+  //   email: $('#sign-up-email').val(),
+  //   password: $('#sign-up-password').val()
+  // }
+  // sign user in and handle success/fail
+  // api.signIn({credentials}).then(signInSuccess).catch(signInFailure)
+
+  // hide the sign up form since we know that worked now
+  // authSelectors.signUp.container.hide()
+
+  // clear/reset the sign in form in case the user gets back there somehow
+  $('#sign-up input').val('')
+  $('#sign-up input').parent('div').toggleClass('is-dirty')
+  console.log(data)
+  //
+  // authSelectors.signUp.password.val('')
+  // authSelectors.signUp.passwordConfirmation.val('')
+  // authSelectors.signUp.email.parent('div').toggleClass('is-dirty')
+  // authSelectors.signUp.password.parent('div').toggleClass('is-dirty')
+  // authSelectors.signUp.passwordConfirmation.parent('div').toggleClass('is-dirty')
+}
+const signUpFailure = (data) => {
+  console.error(data)
+  // clear alerts (like success alerts)
+  // hideAllAlerts()
+
+  // hide the form loader and show the button
+  // hideFormLoader(authSelectors.signUp)
+
+  // let the user know the sign up failed
+  // showAlert(authSelectors.alerts.signUpFailure)
+}
 const signInSuccess = ({user}) => {
   // clear the alerts
   // hideAllAlerts()
@@ -41,5 +83,7 @@ const signInFailure = (data) => {
 }
 module.exports = {
   signInSuccess,
-  signInFailure
+  signInFailure,
+  signUpSuccess,
+  signUpFailure
 }
