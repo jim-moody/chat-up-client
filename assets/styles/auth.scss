@@ -1,0 +1,84 @@
+a:hover {
+  text-decoration: none;
+}
+
+.auth-form-alert {
+  margin: 3% auto;
+  max-width: 330px;
+
+}
+
+a:focus,
+header a:hover {
+  background-color: darken($primary-color, 10%);
+}
+.form-subtext {
+  text-align: center;
+}
+
+.form-options-container {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  align-items: center;
+
+  button {
+    width: 80%;
+  }
+}
+
+.form-card {
+  margin: 5% auto 0;
+
+  p {
+    font-size: 1em;
+  }
+
+  @media only screen and (max-width: 330px) {
+    width: 100%;
+  }
+
+}
+
+.form-link {
+  color: $link-color;
+  cursor: pointer;
+
+  &:focus,
+  &:hover {
+    color: $link-hover-color;
+  }
+}
+
+.form-title {
+  justify-content: center;
+  background-color: $primary-color;
+  color: $primary-font-color;
+}
+.form-link {
+  margin-left: 5px;
+}
+main form {
+  min-height: 200px;
+  padding: 20px;
+}
+
+button.form-button {
+  margin: 0 auto;
+  width: 80%;
+}
+
+h1 {
+  display: inline-block;
+  margin-left: 10%;
+  margin-right: auto;
+}
+
+.mdl-textfield__label {
+  margin-bottom: 0;
+}
+@media (max-width: 1200px) {
+  header form {
+    clear: both;
+  }
+}
