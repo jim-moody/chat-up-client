@@ -12,15 +12,16 @@ a:focus,
 header a:hover {
   background-color: darken($primary-color, 10%);
 }
+
 .form-subtext {
   text-align: center;
 }
 
 .form-options-container {
+  align-items: center;
   display: flex;
   justify-content: center;
   flex-grow: 1;
-  align-items: center;
 
   button {
     width: 80%;
@@ -29,6 +30,7 @@ header a:hover {
 
 .form-card {
   margin: 5% auto 0;
+  max-width: 500px;
 
   p {
     font-size: 1em;
@@ -51,13 +53,15 @@ header a:hover {
 }
 
 .form-title {
-  justify-content: center;
   background-color: $primary-color;
   color: $primary-font-color;
+  justify-content: center;
 }
+
 .form-link {
   margin-left: 5px;
 }
+
 main form {
   min-height: 200px;
   padding: 20px;
@@ -74,9 +78,6 @@ h1 {
   margin-right: auto;
 }
 
-.mdl-textfield__label {
-  margin-bottom: 0;
-}
 @media (max-width: 1200px) {
   header form {
     clear: both;

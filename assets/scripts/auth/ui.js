@@ -22,7 +22,8 @@ const signUpSuccess = (data) => {
 
   // clear/reset the sign in form in case the user gets back there somehow
   $('#sign-up input').val('')
-  $('#sign-up input').parent('div').toggleClass('is-dirty')
+  $('#sign-up input').toggleClass('valid')
+  $('#sign-up label').toggleClass('active')
   console.log(data)
   //
   // authSelectors.signUp.password.val('')
@@ -59,12 +60,9 @@ const signInSuccess = ({user}) => {
   // menuSelectors.menu.container.slideDown('fast')
 
   // clear/reset the sign in form in case the user gets back there somehow
-  const $email = $('#sign-in-email')
-  const $password = $('#sign-in-password')
-  $email.val('')
-  $password.val('')
-  $email.parent('div').toggleClass('is-dirty')
-  $password.parent('div').toggleClass('is-dirty')
+  $('#sign-in input').val('')
+  $('#sign-in input').removeClass('valid')
+  $('#sign-in label').removeClass('active')
 
   // put the user info in the store
   store.user = user
