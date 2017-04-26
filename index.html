@@ -7,39 +7,57 @@
 
   <!-- Do not add `link` tags unless you know what you are doing -->
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+
 
   <!-- Do not add `script` tags unless you know what you are doing -->
-  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
   <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js" defer></script>
+
 </head>
 
 <body>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <div>
 
-    <main class="mdl-layout__content">
-      <div class="page-content">
+    <main>
+      <div>
+<!-- CREATE POSTS START -->
+<div id="submit-post-container" class="form-card card">
+  <form id="submit-post">
+    <div >
+      <textarea  type="text" rows= "3" id="sample5" ></textarea>
+      <label for="sample5">Text lines...</label>
+    </div>
+  </form>
+</div>
+<!-- CREATE POSTS END -->
+
+
+
         <!-- SIGN UP -->
-        <div id="sign-up-container" class="form-card mdl-card mdl-shadow--2dp">
-          <div class="form-title mdl-card__title">
-            <h2 class="form-header mdl-card__title-text">Sign Up</h2>
+        <div id="sign-up-container" class="form-card card">
+          <div class="">
+            <h2 class="">Sign Up</h2>
           </div>
           <form id="sign-up">
             <fieldset style="display:flex;">
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="credentials[email]" id="sign-up-email">
-                <label class="mdl-textfield__label" for="sign-up-email">Email</label>
+              <div>
+                <input  type="text" name="credentials[email]" id="sign-up-email">
+                <label for="sign-up-email">Email</label>
               </div>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="password" name="credentials[password]" id="sign-up-password">
-                <label class="mdl-textfield__label" for="sign-up-password">Password</label>
+              <div>
+                <input  type="password" name="credentials[password]" id="sign-up-password">
+                <label for="sign-up-password">Password</label>
               </div>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="password" name="credentials[password_confirmation]" id="sign-up-password-confirmation">
-                <label class="mdl-textfield__label" for="sign-up-password-confirmation">Confirm Password</label>
+              <div>
+                <input  type="password" name="credentials[password_confirmation]" id="sign-up-password-confirmation">
+                <label for="sign-up-password-confirmation">Confirm Password</label>
               </div>
-              <button type="submit" name="submit" class="form-button mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+              <button type="submit" name="submit" class="form-button">
           Sign Up
         </button>
               <!-- SIGN UP LOADER-->
@@ -58,27 +76,27 @@
         <div style="display: none;" id="sign-up-failure-alert" class="auth-form-alert alert alert-danger" role="alert">Sorry, there was an issue creating your account. Please try again later.</div>
 
         <!-- SIGN IN -->
-        <div id="sign-in-container" class="form-card mdl-card mdl-shadow--2dp">
-          <div class="form-title mdl-card__title">
-            <h2 class="form-header mdl-card__title-text">Sign in to play</h2>
+        <div id="sign-in-container" class="form-card card">
+          <div>
+            <h2>Sign in to play</h2>
           </div>
 
           <form id="sign-in">
             <fieldset style="display:flex;">
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="credentials[email]" id="sign-in-email">
-                <label class="mdl-textfield__label" for="sign-in-email">Email</label>
+              <div class="input-field">
+                <input type="text" class="validate" name="credentials[email]" id="sign-in-email">
+                <label for="sign-in-email">Email</label>
               </div>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="password" name="credentials[password]" id="sign-in-password">
-                <label class="mdl-textfield__label" for="sign-in-password">Password</label>
+              <div>
+                <input  type="password" name="credentials[password]" id="sign-in-password">
+                <label for="sign-in-password">Password</label>
               </div>
 
-              <button type="submit" name="submit" class="form-button mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+              <button type="submit" name="submit" class="form-button">
             Sign In
           </button>
               <!-- SIGN IN LOADER-->
-              <div id="sign-in-loader" style="margin: 0 auto; display:none;" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+              <div id="sign-in-loader" style="margin: 0 auto; display:none;"></div>
 
             </fieldset>
           </form>
