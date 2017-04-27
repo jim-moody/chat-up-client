@@ -84,7 +84,7 @@ const onUpdateLine = (e) => {
       line: {
         text: text
       }
-  }
+    }
   }
   // make the call to the API
   api.updateLine(data).then(ui.updateLineSuccess).catch(ui.updateLineFailure)

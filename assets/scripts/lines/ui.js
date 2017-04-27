@@ -27,8 +27,12 @@ const deleteLineFailure = (data) => {
   console.log(data)
 }
 
-const updateLineSuccess = (data) => {
-  console.log(data)
+const updateLineSuccess = ({line}) => {
+  const container = $(`div[data-id=${line.id}]`).find('.line-text-container')
+  container.find('.line-text').text(line.text)
+
+  container.show()
+  $('.line-edit-container').remove()
 }
 
 const updateLineFailure = (data) => {
