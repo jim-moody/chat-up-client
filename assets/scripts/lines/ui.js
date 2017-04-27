@@ -1,6 +1,8 @@
 'use strict'
+import { resetForm } from '../helpers'
 
 const submitLineSuccess = (data) => {
+  resetForm($('#submit-line'))
   console.log(data)
 }
 
