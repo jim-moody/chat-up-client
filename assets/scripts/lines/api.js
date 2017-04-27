@@ -17,7 +17,15 @@ const listLines = () => {
   })
 }
 
+const deleteLine = (id) => {
+  return $.ajax({
+    url: config.apiOrigin + `/lines/${id}`,
+    method: 'DELETE'
+  })
+}
+
 module.exports = {
   submitLine,
-  listLines
+  listLines,
+  deleteLine
 }

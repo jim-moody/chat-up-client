@@ -11,19 +11,38 @@ const submitLineFailure = (data) => {
   console.log(data)
 }
 
-const listLinesSuccess = (data) => {
-  const html = linesListTemplate({lines: data.lines})
-  $('#lines-list').append(html)
-  console.log(data)
+const listLinesSuccess = ({lines}) => {
+  renderLinesList(lines)
 }
 
 const listLinesFailure = (data) => {
   console.log(data)
 }
 
+const deleteLineSuccess = (callback) => {
+  callback()
+}
+
+const deleteLineFailure = (data) => {
+  console.log(data)
+}
+
+const renderLinesList = (lines) => {
+  // get the list html element
+  const list = $('#lines-list')
+
+  // build the template using handlebars and data passed in
+  const html = linesListTemplate({lines: lines})
+
+  // empty the list and then append the template
+  list.empty().append(html)
+}
+
 module.exports = {
   submitLineSuccess,
   submitLineFailure,
   listLinesSuccess,
-  listLinesFailure
+  listLinesFailure,
+  deleteLineSuccess,
+  deleteLineFailure
 }

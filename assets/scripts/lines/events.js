@@ -21,7 +21,24 @@ const onSubmitLine = (e) => {
 }
 
 const onListLines = (e) => {
-  api.listLines().then(ui.listLinesSuccess).catch(ui.listLinesFailure)
+  // create callback function because we want to render the list
+  // and add the delete function but we cant import it in the ui file
+  // because of circular dependencies
+  const successCallback = (data) => {
+    ui.listLinesSuccess(data)
+    $('.delete').on('click', onDeleteLine)
+  }
+
+  // call the api with our success callback function
+  api.listLines().then(successCallback).catch(ui.listLinesFailure)
+}
+
+const onDeleteLine = (e) => {
+  // get the id from the delete button
+  const id = $(e.target).data('id')
+
+  // call the api with the id, then re-render the list of lines
+  api.deleteLine(id).then(onListLines).catch(ui.deleteLineFailure)
 }
 
 const addEventHandlers = () => {
@@ -31,5 +48,6 @@ const addEventHandlers = () => {
 
 module.exports = {
   addEventHandlers,
-  onListLines
+  onListLines,
+  onDeleteLine
 }
