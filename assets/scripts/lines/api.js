@@ -24,8 +24,18 @@ const deleteLine = (id) => {
   })
 }
 
+const updateLine = ({id, data}) => {
+  console.log(data)
+  return $.ajax({
+    url: config.apiOrigin + `/lines/${id}`,
+    method: 'PATCH',
+    data
+  })
+}
+
 module.exports = {
   submitLine,
   listLines,
-  deleteLine
+  deleteLine,
+  updateLine
 }

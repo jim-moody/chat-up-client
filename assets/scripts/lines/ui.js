@@ -27,6 +27,14 @@ const deleteLineFailure = (data) => {
   console.log(data)
 }
 
+const updateLineSuccess = (data) => {
+  console.log(data)
+}
+
+const updateLineFailure = (data) => {
+  console.log(data)
+}
+
 const renderLinesList = (lines) => {
   // get the list html element
   const list = $('#lines-list')
@@ -44,5 +52,7 @@ module.exports = {
   listLinesSuccess,
   listLinesFailure,
   deleteLineSuccess,
-  deleteLineFailure
+  deleteLineFailure,
+  updateLineSuccess,
+  updateLineFailure
 }
