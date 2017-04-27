@@ -1,0 +1,37 @@
+<!-- SIGN IN -->
+<div id="sign-in-container" class="form-card card">
+  <div>
+    <h2>Sign in to play</h2>
+  </div>
+
+  <form id="sign-in">
+    <fieldset style="display:flex;">
+      <div class="input-field">
+        <input type="text" class="validate" name="credentials[email]" id="sign-in-email">
+        <label for="sign-in-email">Email</label>
+      </div>
+      <div class="input-field">
+        <input  type="password" class="validate" name="credentials[password]" id="sign-in-password">
+        <label for="sign-in-password">Password</label>
+      </div>
+
+      <button type="submit" name="submit" class="form-button">
+    Sign In
+  </button>
+      <!-- SIGN IN LOADER-->
+      <div id="sign-in-loader" style="margin: 0 auto; display:none;"></div>
+
+    </fieldset>
+  </form>
+  <div class="form-subtext">
+    <p>Don't have an account?
+      <!-- Flat button -->
+      <span id="sign-up-show" class="form-link">Sign Up</span>
+    </p>
+  </div>
+</div>
+<!-- SIGN IN ALERTS-->
+<div style="display: none;" id="sign-up-success-alert" class="auth-form-alert alert alert-success" role="alert">You successfully created an account!</div>
+<div style="display: none;" id="sign-out-success-alert" class="auth-form-alert alert alert-success" role="alert">You successfully signed out</div>
+<div style="display: none;" id="sign-in-empty-alert" class="auth-form-alert alert alert-danger" role="alert">Please enter a username and password</div>
+<div style="display: none;" id="sign-in-failure-alert" class="auth-form-alert alert alert-danger" role="alert">There was an issue signing in. Please check your password and try again.</div>

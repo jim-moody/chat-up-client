@@ -1,0 +1,38 @@
+
+        <!-- SIGN UP -->
+
+        <div id="sign-up-container" class="form-card card">
+          <div class="">
+            <h2 class="">Sign Up</h2>
+          </div>
+          <form id="sign-up">
+            <fieldset style="display:flex;">
+              <div class="input-field">
+                <input  type="text" class="validate" name="credentials[email]" id="sign-up-email">
+                <label for="sign-up-email">Email</label>
+              </div>
+              <div class="input-field">
+                <input  type="password" class="validate" name="credentials[password]" id="sign-up-password">
+                <label for="sign-up-password">Password</label>
+              </div>
+              <div class="input-field">
+                <input  type="password" class="validate"  name="credentials[password_confirmation]" id="sign-up-password-confirmation">
+                <label for="sign-up-password-confirmation">Confirm Password</label>
+              </div>
+              <button type="submit" name="submit" class="form-button">
+          Sign Up
+        </button>
+              <!-- SIGN UP LOADER-->
+              <div id="sign-up-loader" style="margin: 0 auto; display:none;" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+            </fieldset>
+          </form>
+          <div class="form-subtext">
+            <p>Already have an account?
+              <!-- Flat button -->
+              <span id="sign-in-show" class="form-link">Sign in</span>
+            </p>
+          </div>
+        </div>
+        <!-- SIGN UP ALERTS -->
+        <div style="display: none;" id="sign-up-empty-alert" class="auth-form-alert alert alert-danger" role="alert">Please fill in all the fields</div>
+        <div style="display: none;" id="sign-up-failure-alert" class="auth-form-alert alert alert-danger" role="alert">Sorry, there was an issue creating your account. Please try again later.</div>

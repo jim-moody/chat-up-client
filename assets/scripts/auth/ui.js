@@ -1,5 +1,7 @@
 'use strict'
 import store from '../store'
+import api from './api'
+import { resetForm } from '../helpers'
 
 const signUpSuccess = (data) => {
   // clear any alerts
@@ -10,28 +12,17 @@ const signUpSuccess = (data) => {
 
   // get the credentials the user entered when signing up
   // so we can sign the user in automatically
-  // const credentials = {
-  //   email: $('#sign-up-email').val(),
-  //   password: $('#sign-up-password').val()
-  // }
+  const credentials = {
+    email: $('#sign-up-email').val(),
+    password: $('#sign-up-password').val()
+  }
   // sign user in and handle success/fail
-  // api.signIn({credentials}).then(signInSuccess).catch(signInFailure)
-
-  // hide the sign up form since we know that worked now
-  // authSelectors.signUp.container.hide()
+  api.signIn({credentials}).then(signInSuccess).catch(signInFailure)
 
   // clear/reset the sign in form in case the user gets back there somehow
-  $('#sign-up input').val('')
-  $('#sign-up input').toggleClass('valid')
-  $('#sign-up label').toggleClass('active')
-  console.log(data)
-  //
-  // authSelectors.signUp.password.val('')
-  // authSelectors.signUp.passwordConfirmation.val('')
-  // authSelectors.signUp.email.parent('div').toggleClass('is-dirty')
-  // authSelectors.signUp.password.parent('div').toggleClass('is-dirty')
-  // authSelectors.signUp.passwordConfirmation.parent('div').toggleClass('is-dirty')
-}
+  // and then hide it
+  resetForm($('#sign-up-container')).hide()
+  }
 const signUpFailure = (data) => {
   console.error(data)
   // clear alerts (like success alerts)
@@ -60,9 +51,7 @@ const signInSuccess = ({user}) => {
   // menuSelectors.menu.container.slideDown('fast')
 
   // clear/reset the sign in form in case the user gets back there somehow
-  $('#sign-in input').val('')
-  $('#sign-in input').removeClass('valid')
-  $('#sign-in label').removeClass('active')
+  resetForm($('#sign-in-container')).hide()
 
   // put the user info in the store
   store.user = user

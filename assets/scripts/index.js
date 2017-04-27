@@ -4,10 +4,12 @@ const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 import auth from './auth/events'
 import lines from './lines/events'
+import signInTemplate from '../scripts/templates/sign-in.handlebars'
 
 $(() => {
   setAPIOrigin(location, config)
-  auth.addEventHandlers()
+  $('#auth-content').append(signInTemplate)
+  auth.onShowSignIn()
   lines.addEventHandlers()
   lines.onListLines()
 })

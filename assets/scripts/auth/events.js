@@ -2,6 +2,8 @@
 import ui from './ui'
 import api from './api'
 import getFormFields from '../../../lib/get-form-fields'
+import signUpTemplate from '../templates/sign-up.handlebars'
+import signInTemplate from '../templates/sign-in.handlebars'
 
 const onSignUp = (event) => {
   // prevent a page refresh
@@ -47,11 +49,19 @@ const onSignIn = (event) => {
   }
 }
 
-const addEventHandlers = () => {
+const onShowSignUp = () => {
+  $('#auth-content').empty().append(signUpTemplate)
   $('#sign-up').on('submit', onSignUp)
-  $('#sign-in').on('submit', onSignIn)
+  $('#sign-in-show').on('click', onShowSignIn)
 }
 
+const onShowSignIn = () => {
+  $('#auth-content').empty().append(signInTemplate)
+  $('#sign-in').on('submit', onSignIn)
+  $('#sign-up-show').on('click', onShowSignUp)
+}
+
+
 module.exports = {
-  addEventHandlers
+  onShowSignIn
 }
