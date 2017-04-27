@@ -5,6 +5,8 @@ const config = require('./config')
 import auth from './auth/events'
 import lines from './lines/events'
 import signInTemplate from '../scripts/templates/sign-in.handlebars'
+import 'materialize-css/bin/materialize.css'
+import 'materialize-css/bin/materialize.js'
 
 $(() => {
   setAPIOrigin(location, config)
