@@ -7,7 +7,6 @@ import lines from './lines/events'
 import signInTemplate from '../scripts/templates/sign-in.handlebars'
 
 $(() => {
-  $.getScript('https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js')
   setAPIOrigin(location, config)
   $('#auth-content').append(signInTemplate)
   auth.onShowSignIn()
