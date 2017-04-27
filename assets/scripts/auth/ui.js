@@ -2,6 +2,7 @@
 import store from '../store'
 import api from './api'
 import { resetForm } from '../helpers'
+import { onListLines } from '../lines/events'
 
 const signUpSuccess = (data) => {
   // clear any alerts
@@ -22,7 +23,8 @@ const signUpSuccess = (data) => {
   // clear/reset the sign in form in case the user gets back there somehow
   // and then hide it
   resetForm($('#sign-up-container')).hide()
-  }
+}
+
 const signUpFailure = (data) => {
   console.error(data)
   // clear alerts (like success alerts)
@@ -34,6 +36,7 @@ const signUpFailure = (data) => {
   // let the user know the sign up failed
   // showAlert(authSelectors.alerts.signUpFailure)
 }
+
 const signInSuccess = ({user}) => {
   // clear the alerts
   // hideAllAlerts()
@@ -55,8 +58,13 @@ const signInSuccess = ({user}) => {
 
   // put the user info in the store
   store.user = user
+
+  // re render the list of lines because they might be editable now
+  onListLines()
+
   console.log(store)
 }
+
 const signInFailure = (data) => {
   console.error(data)
   // make sure sign in is shown, just in case the user came from sign up

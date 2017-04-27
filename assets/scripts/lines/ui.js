@@ -1,10 +1,14 @@
 'use strict'
 import { resetForm } from '../helpers'
 import linesListTemplate from '../templates/lines-list.handlebars'
+import lineTemplate from '../templates/line.handlebars'
 
-const submitLineSuccess = (data) => {
+const submitLineSuccess = ({line}) => {
+  console.log(line)
+
   resetForm($('#submit-line'))
-  console.log(data)
+  const html = lineTemplate({line})
+  $('#lines-list').append(html)
 }
 
 const submitLineFailure = (data) => {
@@ -12,6 +16,7 @@ const submitLineFailure = (data) => {
 }
 
 const listLinesSuccess = ({lines}) => {
+  console.log(lines)
   renderLinesList(lines)
 }
 

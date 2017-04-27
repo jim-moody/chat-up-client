@@ -20,7 +20,7 @@ const onSubmitLine = (e) => {
   api.submitLine(data).then(ui.submitLineSuccess).catch(ui.submitLineFailure)
 }
 
-const onListLines = (e) => {
+const onListLines = () => {
   // create callback function because we want to render the list
   // and add the delete function but we cant import it in the ui file
   // because of circular dependencies

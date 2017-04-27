@@ -61,7 +61,6 @@ const onShowSignIn = () => {
   $('#sign-up-show').on('click', onShowSignUp)
 }
 
-
 module.exports = {
   onShowSignIn
 }

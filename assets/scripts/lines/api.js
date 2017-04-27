@@ -15,9 +15,13 @@ const submitLine = (data) => {
 }
 
 const listLines = () => {
+  const token = store.user && store.user.token || ''
   return $.ajax({
     url: config.apiOrigin + '/lines',
-    method: 'GET'
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + token
+    }
   })
 }
 

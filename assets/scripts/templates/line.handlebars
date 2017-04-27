@@ -1,0 +1,17 @@
+<div class="form-card card" data-id="{{line.id}}">
+<div class="line-text-container">
+<div class="line-text">
+   {{#if line.text}}
+     {{line.text}}
+   {{else}}
+     No description.
+   {{/if}}
+ </div>
+ {{#if line.editable}}
+ <div>
+   <button class="delete" data-id="{{line.id}}" type="button" name="button">Remove</button>
+   <button class="edit" data-id="{{line.id}}" type="button" name="button">Edit</button>
+ </div>
+ {{/if}}
+</div>
+</div>
