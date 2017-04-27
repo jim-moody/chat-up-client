@@ -1,0 +1,16 @@
+{{#each lines as |line|}}
+
+ <div class="form-card card" data-id="{{line.id}}">
+   <div >
+      {{#if line.text}}
+        {{line.text}}
+      {{else}}
+        No description.
+      {{/if}}
+    </div>
+    <div>
+      <button class="delete" data-id="{{line.id}}" type="button" name="button">Remove</button>
+    </div>
+  </div>
+
+{{/each}}

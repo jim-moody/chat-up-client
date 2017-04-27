@@ -10,6 +10,14 @@ const submitLine = (data) => {
   })
 }
 
+const listLines = () => {
+  return $.ajax({
+    url: config.apiOrigin + '/lines',
+    method: 'GET'
+  })
+}
+
 module.exports = {
-  submitLine
+  submitLine,
+  listLines
 }

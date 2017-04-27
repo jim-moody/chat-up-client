@@ -1,6 +1,5 @@
 'use strict'
 
-import getFormFields from '../../../lib/get-form-fields'
 import api from './api'
 import ui from './ui'
 import store from '../store'
@@ -21,11 +20,16 @@ const onSubmitLine = (e) => {
   api.submitLine(data).then(ui.submitLineSuccess).catch(ui.submitLineFailure)
 }
 
+const onListLines = (e) => {
+  api.listLines().then(ui.listLinesSuccess).catch(ui.listLinesFailure)
+}
+
 const addEventHandlers = () => {
   // make the api call once a user clicks submit and send the text down
   $('#submit-line').on('submit', onSubmitLine)
 }
 
 module.exports = {
-  addEventHandlers
+  addEventHandlers,
+  onListLines
 }
