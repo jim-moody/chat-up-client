@@ -1,11 +1,10 @@
 'use strict'
 import { resetForm } from '../helpers'
 import linesListTemplate from '../templates/lines-list.handlebars'
-import lineTemplate from '../templates/line.handlebars'
 
 const submitLineSuccess = ({line}) => {
   // reset the form so another line can be added
-  resetForm($('#submit-line'))
+  resetForm($('#submit-line-container')).slideUp()
 }
 
 const submitLineFailure = (data) => {

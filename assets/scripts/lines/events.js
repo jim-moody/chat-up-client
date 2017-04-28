@@ -107,9 +107,15 @@ const onUpdateLine = (e) => {
   // make the call to the API
   api.updateLine(data).then(ui.updateLineSuccess).catch(ui.updateLineFailure)
 }
+const onShowSubmitLine = (e) => {
+  console.log('jim')
+  $('#submit-line-container').slideDown(() => {
+    $('#submit-line-container textarea').focus()
+  })
+}
 
 const addEventHandlers = () => {
-  // make the api call once a user clicks submit and send the text down
+  $('#show-submit-line').on('click', onShowSubmitLine)
   $('#submit-line').on('submit', onSubmitLine)
 }
 

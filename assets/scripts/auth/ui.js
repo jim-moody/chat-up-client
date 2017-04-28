@@ -42,6 +42,11 @@ const signInSuccess = ({user}) => {
   $('#sign-in-container').hide()
   toggleMenuLinks(true)
 
+  // clear/reset the sign in form in case the user gets back there somehow
+  resetForm($('#sign-in-container')).hide()
+
+  $('#show-submit-line').show()
+
   // clear the alerts
   // hideAllAlerts()
 
@@ -56,9 +61,6 @@ const signInSuccess = ({user}) => {
 
   // show the header now that the user is signed in
   // menuSelectors.menu.container.slideDown('fast')
-
-  // clear/reset the sign in form in case the user gets back there somehow
-  resetForm($('#sign-in-container')).hide()
 
   // put the user info in the store
   store.user = user
@@ -80,6 +82,39 @@ const signInFailure = (data) => {
   // show a message to the user that sign in didnt work
   // showAlert(authSelectors.alerts.signInFailure)
 }
+
+const signOutSuccess = (data) => {
+  toggleMenuLinks()
+
+  // hide change pw just in case it was shown
+  resetForm($('#change-pw-container'))
+  $('#auth-content').empty()
+
+  // hide and reset the submit line container in case it is
+  // on the screen when the user signs out because you cant submit
+  // a new line when you arent logged in!
+  resetForm($('#submit-line-container')).hide()
+
+  // see above
+  $('#show-submit-line').hide()
+
+  store.user = {}
+  onListLines()
+
+}
+
+const signOutFailure = (data) => {
+  console.error(data)
+}
+
+const changePasswordSuccess = (data) => {
+  resetForm($('#change-pw-container')).hide()
+}
+
+const changePasswordFailure = (data) => {
+  console.log(data)
+}
+
 const toggleMenuLinks = (isLoggedIn) => {
   if (isLoggedIn) {
     $('a.signed-in').show()
@@ -93,5 +128,9 @@ module.exports = {
   signInSuccess,
   signInFailure,
   signUpSuccess,
-  signUpFailure
+  signUpFailure,
+  signOutSuccess,
+  signOutFailure,
+  changePasswordSuccess,
+  changePasswordFailure
 }

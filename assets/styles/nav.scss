@@ -5,6 +5,34 @@ div.nav-content.fixed {
 .navbar-fixed {
       height: 125px;
 }
+
+.floating-button.btn-floating.halfway-fab{
+  bottom: 10%;
+  right: 5%;
+
+}
+
+.user-dropdown-content {
+  display: none;
+  position: absolute;
+  top: 45px;
+  right: 10px;
+  margin-top: 0;
+  z-index: 2;
+
+  li {
+    color: gray;
+    text-align: center;
+    float: none;
+    padding: 0 1.1em;
+
+    &:hover {
+      background-color: darken(white, 10%);
+      cursor: pointer;
+    }
+  }
+}
+
 @media only screen and (max-width: 600px) {
   div.brand-logo.left {
     font-size: 1.3em;

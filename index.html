@@ -2,11 +2,13 @@
 <html>
 
 <head>
-  <title>Example</title>
+  <title>Conversation Starters</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Do not add `link` tags unless you know what you are doing -->
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
   <!-- Do not add `script` tags unless you know what you are doing -->
@@ -16,6 +18,9 @@
 </head>
 
 <body>
+  <a style="display:none" id="show-submit-line" class="floating-button btn-floating btn-large halfway-fab waves-effect waves-light blue darken-3">
+  <i class="material-icons">add</i>
+</a>
   <div class="navbar-fixed">
 
   <nav id="nav-relative" class="nav-extended blue darken-2">
@@ -24,16 +29,23 @@
       <ul id="nav-mobile" class="right">
         <li><a class="signed-out" id="nav-sign-in-link">Log in</a></li>
         <li><a class="signed-out"id="nav-sign-up-link">Sign Up</a></li>
-        <li ><a class="signed-in"style="display:none" id="nav-sign-out-link">Sign Out</a></li>
-        <li ><a class="signed-in" style="display:none" id="nav-change-password-link">Change Password</a></li>
+        <li><a id="nav-user-link" class="signed-in" style="display:none;"><i class="material-icons">person</i></a>
+          <ul id="user-dropdown-content" class="card user-dropdown-content" >
+                 <li id="nav-sign-out-link">Sign Out</li>
+                 <li id="nav-change-password-link">Change Password</li>
+               </ul>
+        </li>
       </ul>
     </div>
 
     <div class="nav-content">
       <ul class="tabs tabs-transparent">
         <li class="tab"><a href="#test1">newest</a></li>
-        <li class="tab"><a class="active" href="#test2">Most Popular</a></li>
+        <li class="tab"><a class="active" href="#test2">Most Popular</a>
+
+        </li>
       </ul>
+
 
 </div>
   </nav>
@@ -45,23 +57,23 @@
     <main>
       <div>
         <div id="auth-content"></div>
+        <!-- CREATE PICKUP LINES START -->
+        <div style="display:none" id="submit-line-container" class="form-card card">
+          <form id="submit-line">
+            <div class="input-field">
+              <textarea rows="3" class="materialize-textarea" id="line-textarea"></textarea>
+              <label for="line-textarea">Enter line</label>
+            </div>
+            <button class="btn waves-effect blue darken-3 waves-light" type="submit" name="action">Submit</button>
+          </form>
+        </div>
+        <!-- CREATE PICKUP LINES END -->
 
         <!-- LIST LINES START -->
         <div class="" id="lines-list">
         </div>
         <!-- LIST LINES END -->
 
-        <!-- CREATE PICKUP LINES START -->
-        <div id="submit-line-container" class="form-card card">
-          <form id="submit-line">
-            <div class="input-field">
-              <textarea rows="3" class="materialize-textarea" id="line-textarea"></textarea>
-              <label for="line-textarea">Enter line</label>
-            </div>
-            <button class="btn waves-effect pink darken-3 waves-light" type="submit" name="action">Submit</button>
-          </form>
-        </div>
-        <!-- CREATE PICKUP LINES END -->
 
 
       </div>
