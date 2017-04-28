@@ -1,8 +1,8 @@
 'use strict'
 import store from '../store'
 import api from './api'
-import { resetForm } from '../helpers'
-import { onListLines } from '../lines/events'
+import {resetForm} from '../helpers'
+import {onListLines} from '../lines/events'
 
 const signUpSuccess = (data) => {
   // clear any alerts
@@ -38,6 +38,10 @@ const signUpFailure = (data) => {
 }
 
 const signInSuccess = ({user}) => {
+  $('#sign-up-container').hide()
+  $('#sign-in-container').hide()
+  toggleMenuLinks(true)
+
   // clear the alerts
   // hideAllAlerts()
 
@@ -75,6 +79,15 @@ const signInFailure = (data) => {
 
   // show a message to the user that sign in didnt work
   // showAlert(authSelectors.alerts.signInFailure)
+}
+const toggleMenuLinks = (isLoggedIn) => {
+  if (isLoggedIn) {
+    $('a.signed-in').show()
+    $('a.signed-out').hide()
+  } else {
+    $('a.signed-in').hide()
+    $('a.signed-out').show()
+  }
 }
 module.exports = {
   signInSuccess,
