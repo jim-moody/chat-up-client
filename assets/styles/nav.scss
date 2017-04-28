@@ -1,0 +1,12 @@
+div.nav-content.fixed {
+  position: fixed;
+}
+
+.navbar-fixed {
+      height: 125px;
+}
+@media only screen and (max-width: 600px) {
+  div.brand-logo.left {
+    font-size: 1.3em;
+  }
+}

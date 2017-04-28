@@ -50,17 +50,32 @@ const onSignIn = (event) => {
 }
 
 const onShowSignUp = () => {
-  $('#auth-content').empty().append(signUpTemplate)
-  $('#sign-up').on('submit', onSignUp)
-  $('#sign-in-show').on('click', onShowSignIn)
+  // if the sign up is not already on screen
+  // we dont want 100 sign-up forms!
+  if (!$('#sign-up-container').is('visible')) {
+    // get the sign up template and show it
+    $('#auth-content').empty().append(signUpTemplate)
+
+    // add necessary event handlers
+    $('#sign-up').on('submit', onSignUp)
+    $('#sign-in-show').on('click', onShowSignIn)
+  }
 }
 
 const onShowSignIn = () => {
-  $('#auth-content').empty().append(signInTemplate)
-  $('#sign-in').on('submit', onSignIn)
-  $('#sign-up-show').on('click', onShowSignUp)
+  // if the sign in is not already on screen
+  // we dont want 100 sign-in forms!
+  if (!$('#sign-in-container').is('visible')) {
+    // get the sign in template and show it
+    $('#auth-content').empty().append(signInTemplate)
+
+    // add necessary event handlers
+    $('#sign-in').on('submit', onSignIn)
+    $('#sign-up-show').on('click', onShowSignUp)
+  }
 }
 
 module.exports = {
-  onShowSignIn
+  onShowSignIn,
+  onShowSignUp
 }

@@ -15,6 +15,7 @@ const resetForm = ($form) => {
   return $form
 }
 
+
 module.exports = {
   resetForm
 }

@@ -2,17 +2,15 @@
 
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
-import auth from './auth/events'
 import lines from './lines/events'
-import signInTemplate from '../scripts/templates/sign-in.handlebars'
+import nav from './nav/events'
 import 'materialize-css/bin/materialize.css'
 import 'materialize-css/bin/materialize.js'
 
 $(() => {
-  console.log()
   setAPIOrigin(location, config)
-  $('#auth-content').append(signInTemplate)
-  auth.onShowSignIn()
+  // auth.onShowSignIn()
+  nav.addEventHandlers()
   lines.addEventHandlers()
   lines.onListLines()
 })

@@ -15,13 +15,15 @@ header a:hover {
 
 .form-subtext {
   text-align: center;
+  padding:10px;
+  font-size:1.1em;
 }
 
 .form-options-container {
   align-items: center;
   display: flex;
-  justify-content: center;
   flex-grow: 1;
+  justify-content: center;
 
   button {
     width: 80%;
@@ -34,10 +36,15 @@ header a:hover {
 
   p {
     font-size: 1em;
+    margin: 0 auto;
   }
 
   @media only screen and (max-width: 330px) {
     width: 100%;
+  }
+  fieldset {
+    border: 0;
+    padding: none;
   }
 
 }
@@ -55,7 +62,8 @@ header a:hover {
 .form-title {
   background-color: $primary-color;
   color: $primary-font-color;
-  justify-content: center;
+  text-align: center;
+  padding: 0.5em;
 }
 
 .form-link {
@@ -64,19 +72,37 @@ header a:hover {
 
 main form {
   min-height: 200px;
-  padding: 20px;
+  padding: 10px;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 button.form-button {
-  background-color: $primary-color;
-  margin: 0 auto;
-  width: 80%;
+margin: 0 auto;
+max-width: 300px;
+min-width: 50%;
 }
 
 h1 {
   display: inline-block;
   margin-left: 10%;
   margin-right: auto;
+}
+.input-field input:focus:not([readonly]){
+  border-bottom: 1px solid #1976D2;
+    box-shadow: 0 1px 0 0 #1976D2;
+
+}
+.input-field input:focus:not([readonly]) + label{
+    color: #1976D2;
+}
+.input-field textarea:focus:not([readonly]){
+  border-bottom: 1px solid #1976D2;
+    box-shadow: 0 1px 0 0 #1976D2;
+
+}
+.input-field textarea:focus:not([readonly]) + label{
+    color: #1976D2;
 }
 
 @media (max-width: 1200px) {
