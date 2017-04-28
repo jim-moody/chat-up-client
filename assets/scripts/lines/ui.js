@@ -45,12 +45,14 @@ const renderLinesList = (lines) => {
   // get the list html element
   const list = $('#lines-list')
 
+  // order the lines by id, oldest to newest
+  lines = lines.sort(({id: id1}, {id: id2}) => id1 - id2)
+
   // build the template using handlebars and data passed in
   const html = linesListTemplate({lines: lines})
 
   // empty the list and then append the template
   list.empty().append(html)
-
 }
 
 module.exports = {
