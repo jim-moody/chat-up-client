@@ -9,6 +9,7 @@ const submitLineSuccess = ({line}) => {
   resetForm($('#submit-line'))
   const html = lineTemplate({line})
   $('#lines-list').append(html)
+
 }
 
 const submitLineFailure = (data) => {
@@ -53,6 +54,7 @@ const renderLinesList = (lines) => {
 
   // empty the list and then append the template
   list.empty().append(html)
+
 }
 
 module.exports = {

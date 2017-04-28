@@ -16,8 +16,13 @@ const onSubmitLine = (e) => {
       user_id: userId
     }
   }
+  const successCallback = (data) => {
+    ui.submitLineSuccess(data)
+    $('.delete').on('click', onDeleteLine)
+    $('.edit').on('click', onShowEditLine)
+  }
   // make the call to the API
-  api.submitLine(data).then(ui.submitLineSuccess).catch(ui.submitLineFailure)
+  api.submitLine(data).then(successCallback).catch(ui.submitLineFailure)
 }
 
 const onListLines = () => {
@@ -26,6 +31,7 @@ const onListLines = () => {
   // because of circular dependencies
   const successCallback = (data) => {
     ui.listLinesSuccess(data)
+    $('.edit-options').on('click', onShowEditOptions)
     $('.delete').on('click', onDeleteLine)
     $('.edit').on('click', onShowEditLine)
   }
@@ -74,7 +80,20 @@ const onCancelEditLine = (e) => {
   //  $('.line-text-container').slideDown()
   // })
 }
+const onShowEditOptions = (e) => {
+  // show the dropdown content
+  const ul = $(e.target).siblings('ul')
 
+  // turn a click handler onto the body so anywhere that a user clicks
+  // the dropdown will be hidden, then immediately turn that handler // off
+  ul.show(() => {
+    $('body').on('click', (e) => {
+      ul.hide()
+      $('body').off()
+    })
+  }
+  )
+}
 const onUpdateLine = (e) => {
   const id = $(e.target).data('id')
   const text = $('#line-textarea-edit').val()

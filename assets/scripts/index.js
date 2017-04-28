@@ -9,6 +9,7 @@ import 'materialize-css/bin/materialize.css'
 import 'materialize-css/bin/materialize.js'
 
 $(() => {
+  console.log()
   setAPIOrigin(location, config)
   $('#auth-content').append(signInTemplate)
   auth.onShowSignIn()

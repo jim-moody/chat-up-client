@@ -1,0 +1,41 @@
+.edit-link-container {
+  align-self: center;
+  margin: 1.2em;
+
+  i{
+    padding: 5px;
+  &:hover {
+    cursor: pointer;
+    color: tint($black, 50%);
+  }
+  }
+}
+
+.line-text-container {
+  display: flex;
+}
+
+.line-text {
+  flex-grow: 1;
+  padding: 1.2em;
+}
+.edit-dropdown-content {
+  background-color: $primary-background-color;
+  border: 1px solid $border-color;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+
+  li {
+    padding: 10px 25px;
+
+    &:hover {
+      background-color: $secondary-color;
+      cursor: pointer;
+    }
+    &:nth-child(1){
+      border-bottom: 1px solid $border-color;
+    }
+  }
+}

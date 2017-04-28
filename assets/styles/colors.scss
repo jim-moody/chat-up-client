@@ -1,9 +1,29 @@
 $primary-color: #880e4f;
 $secondary-color: rgb(33, 150, 243);
+$white: #fff;
 $primary-font-color: #fff;
 $secondary-font-color: #717171;
 $link-color: rgb(68, 138, 255);
 $link-hover-color: #23527c;
 $border-color: #d3d3d3;
+$primary-background-color: $white;
 $secondary-background-color: #f5f4f4;
-$white: #fff;
+$black: #000;
+
+/// Slightly lighten a color
+/// @access public
+/// @param {Color} $color - color to tint
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function tint($color, $percentage) {
+  @return mix($white, $color, $percentage);
+}
+
+/// Slightly darken a color
+/// @access public
+/// @param {Color} $color - color to shade
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function shade($color, $percentage) {
+  @return mix($black, $color, $percentage);
+}
