@@ -13,14 +13,11 @@
  {{#if line.editable}}
  <div class="edit-link-container"><i class="edit-options fa fa-ellipsis-v fa-lg" aria-hidden="true"></i>
    <!-- Dropdown Structure -->
-   <ul  style="display:none;" class='edit-dropdown-content'>
+   <ul  style="display:none;" class='card edit-dropdown-content'>
      <li class="edit" data-id="{{line.id}}">Edit</li>
      <li class="delete" data-id="{{line.id}}">Delete</li>
    </ul>
  </div>
-   <!-- <button class="delete" data-id="{{line.id}}" type="button" name="button">Remove</button>
-   <button class="edit" data-id="{{line.id}}" type="button" name="button">Edit</button>
-<i class="fa fa-ellipsis-v" aria-hidden="true"></i> </div> -->
  {{/if}}
 </div>
 </div>

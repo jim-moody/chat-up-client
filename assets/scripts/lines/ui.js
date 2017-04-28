@@ -4,12 +4,8 @@ import linesListTemplate from '../templates/lines-list.handlebars'
 import lineTemplate from '../templates/line.handlebars'
 
 const submitLineSuccess = ({line}) => {
-  console.log(line)
-
+  // reset the form so another line can be added
   resetForm($('#submit-line'))
-  const html = lineTemplate({line})
-  $('#lines-list').append(html)
-
 }
 
 const submitLineFailure = (data) => {
@@ -38,7 +34,7 @@ const updateLineSuccess = ({line}) => {
   container.find('.line-text').text(line.text)
 
   container.show()
-  $('.line-edit-container').remove()
+  $('.edit-container').remove()
 }
 
 const updateLineFailure = (data) => {

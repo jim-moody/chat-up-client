@@ -18,8 +18,7 @@ const onSubmitLine = (e) => {
   }
   const successCallback = (data) => {
     ui.submitLineSuccess(data)
-    $('.delete').on('click', onDeleteLine)
-    $('.edit').on('click', onShowEditLine)
+    onListLines()
   }
   // make the call to the API
   api.submitLine(data).then(successCallback).catch(ui.submitLineFailure)
@@ -52,7 +51,7 @@ const onShowEditLine = (e) => {
   // if they are in edit mode, this will remove that
   // we do this because we dont want the user editing multiple lines at the
   // same time
-  $('.line-edit-container').remove()
+  $('.edit-container').remove()
   $('.line-text-container').show()
 
   const id = $(e.target).data('id')
@@ -72,10 +71,10 @@ const onShowEditLine = (e) => {
   $('#line-edit-save').on('click', onUpdateLine)
 }
 const onCancelEditLine = (e) => {
-  $('.line-edit-container').remove()
+  $('.edit-container').remove()
   $('.line-text-container').show()
 
-  // $('.line-edit-container').slideUp(function () {
+  // $('.edit-container').slideUp(function () {
   //  this.remove()
   //  $('.line-text-container').slideDown()
   // })
@@ -86,7 +85,7 @@ const onShowEditOptions = (e) => {
 
   // turn a click handler onto the body so anywhere that a user clicks
   // the dropdown will be hidden, then immediately turn that handler // off
-  ul.show(() => {
+  ul.show('fast', () => {
     $('body').on('click', (e) => {
       ul.hide()
       $('body').off()
