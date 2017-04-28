@@ -4,6 +4,7 @@ import api from './api'
 import ui from './ui'
 import store from '../store'
 import lineEditTemplate from '../templates/line-edit.handlebars'
+import {resetForm} from '../helpers'
 const onSubmitLine = (e) => {
   // prevent page from refreshing
   e.preventDefault()
@@ -114,9 +115,14 @@ const onShowSubmitLine = (e) => {
   })
 }
 
+const onCancelSubmitLine = (e) => {
+  resetForm($('#submit-line-container')).slideUp()
+}
+
 const addEventHandlers = () => {
   $('#show-submit-line').on('click', onShowSubmitLine)
   $('#submit-line').on('submit', onSubmitLine)
+  $('#line-submit-cancel').on('click', onCancelSubmitLine)
 }
 
 module.exports = {
