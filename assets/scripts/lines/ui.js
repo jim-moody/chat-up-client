@@ -47,6 +47,21 @@ const renderLinesList = (lines) => {
   // order the lines by id, oldest to newest
   lines = lines.sort(({id: id1}, {id: id2}) => id1 - id2)
 
+  // create object from votes array with two keys
+  // upVotes:
+  // downVotes:
+
+  lines.forEach((line) => {
+    const voteSummary = {
+      up: 0,
+      down: 0
+    }
+    line.votes.forEach((vote) => {
+      voteSummary.up += vote.value === 1 && 1
+      voteSummary.down += vote.value === -1 && 1
+    })
+    line.voteSummary = voteSummary
+  })
   // build the template using handlebars and data passed in
   const html = linesListTemplate({lines: lines})
 

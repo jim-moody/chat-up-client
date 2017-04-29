@@ -20,16 +20,14 @@
  </div>
  {{/if}}
 </div>
+<div class="voting-container">
+  <div class="vote-container">
+    <span class="green-text text-darken-3">{{line.voteSummary.down}}</span>
+    <i data-value="1" data-id="{{line.id}}"class="vote up-vote material-icons blue-text text-darken-4">thumb_up</i>
+  </div>
+  <div class="vote-container">
+    <i data-value="-1" data-id="{{line.id}}" class="vote down-vote material-icons blue-text text-darken-4">thumb_down</i>
+    <span class="red-text text-darken-3">{{line.voteSummary.up}}</span>
+  </div>
 </div>
-
-
-<!-- <div class="line-text" style="
-    display: flex;
-">
-  <div style="
-    flex-grow: 1;
-    padding: 1.2em;
-"><p>Insert pickup line here</p></div>
-
-
-</div> -->
+</div>

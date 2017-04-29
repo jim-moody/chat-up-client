@@ -10,6 +10,9 @@ const onSubmitLine = (e) => {
   e.preventDefault()
 
   const text = $('#line-textarea').val()
+
+  // TODO add a check for text here, if empty dont submit
+
   const userId = store.user.id
   const data = {
     line: {
@@ -109,7 +112,6 @@ const onUpdateLine = (e) => {
   api.updateLine(data).then(ui.updateLineSuccess).catch(ui.updateLineFailure)
 }
 const onShowSubmitLine = (e) => {
-  console.log('jim')
   $('#submit-line-container').slideDown(() => {
     $('#submit-line-container textarea').focus()
   })
@@ -119,15 +121,31 @@ const onCancelSubmitLine = (e) => {
   resetForm($('#submit-line-container')).slideUp()
 }
 
+const onVote = (e) => {
+  const target = $(e.target)
+  const lineId = target.data('id')
+  const value = target.data('value')
+  const data = {
+    line: {
+      line_id: lineId,
+      value: value
+    }
+  }
+
+  api.vote(data).then(ui.voteSuccess).catch(ui.voteFailure)
+}
+
 const addEventHandlers = () => {
   $('#show-submit-line').on('click', onShowSubmitLine)
   $('#submit-line').on('submit', onSubmitLine)
   $('#line-submit-cancel').on('click', onCancelSubmitLine)
+  $('.vote').on('click', onVote)
 }
 
 module.exports = {
   addEventHandlers,
   onListLines,
   onDeleteLine,
-  onUpdateLine
+  onUpdateLine,
+  onVote
 }

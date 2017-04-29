@@ -69,3 +69,21 @@
   align-self: flex-end;
 
 }
+
+.voting-container {
+  display: flex;
+  border-top: 1px solid gray;
+  // align-items: center;
+
+
+}
+
+.vote-container {
+  align-items: center;
+  display: flex;
+  padding: 10px;
+
+  i, span {
+    padding: 5px;
+  }
+}
