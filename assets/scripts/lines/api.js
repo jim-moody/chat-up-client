@@ -47,9 +47,22 @@ const updateLine = ({id, data}) => {
   })
 }
 
+const addVote = (data) => {
+  console.log(data)
+  return $.ajax({
+    url: config.apiOrigin + '/votes',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
 module.exports = {
   submitLine,
   listLines,
   deleteLine,
-  updateLine
+  updateLine,
+  addVote
 }

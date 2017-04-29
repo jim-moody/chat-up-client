@@ -37,6 +37,7 @@ const onListLines = () => {
     $('.edit-options').on('click', onShowEditOptions)
     $('.delete').on('click', onDeleteLine)
     $('.edit').on('click', onShowEditLine)
+    $('.vote').on('click', onAddVote)
   }
 
   // call the api with our success callback function
@@ -121,25 +122,28 @@ const onCancelSubmitLine = (e) => {
   resetForm($('#submit-line-container')).slideUp()
 }
 
-const onVote = (e) => {
-  const target = $(e.target)
-  const lineId = target.data('id')
-  const value = target.data('value')
-  const data = {
-    line: {
-      line_id: lineId,
-      value: value
+const onAddVote = (e) => {
+  // TODO add error message if user is not logged in
+  console.log(e)
+  if (store.user) {
+    const target = $(e.target)
+    const lineId = target.data('id')
+    const value = target.data('value')
+    const data = {
+      vote: {
+        line_id: lineId,
+        value: value
+      }
     }
-  }
 
-  api.vote(data).then(ui.voteSuccess).catch(ui.voteFailure)
+    api.addVote(data).then(ui.voteSuccess).catch(ui.voteFailure)
+}
 }
 
 const addEventHandlers = () => {
   $('#show-submit-line').on('click', onShowSubmitLine)
   $('#submit-line').on('submit', onSubmitLine)
   $('#line-submit-cancel').on('click', onCancelSubmitLine)
-  $('.vote').on('click', onVote)
 }
 
 module.exports = {
@@ -147,5 +151,5 @@ module.exports = {
   onListLines,
   onDeleteLine,
   onUpdateLine,
-  onVote
+  onAddVote
 }
