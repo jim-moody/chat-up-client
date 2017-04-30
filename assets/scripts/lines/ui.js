@@ -1,6 +1,7 @@
 'use strict'
-import { resetForm } from '../helpers'
+import {resetForm} from '../helpers'
 import linesListTemplate from '../templates/lines-list.handlebars'
+import {getVoteSummary} from './helpers'
 
 const submitLineSuccess = ({line}) => {
   // reset the form so another line can be added
@@ -40,8 +41,17 @@ const updateLineFailure = (data) => {
   console.log(data)
 }
 
-const addVoteSuccess = (data) => {
-  console.log(data)
+const addVoteSuccess = ({vote: {line}}) => {
+  // get the two vote value text elements
+  const upVote = $(`#up-vote-${line.id}`)
+  const downVote = $(`#down-vote-${line.id}`)
+
+  // get the new up and down values
+  const {up, down} = getVoteSummary(line.votes)
+
+  // set the new values
+  upVote.text(up)
+  downVote.text(down)
 }
 
 const addVoteFailure = (data) => {
@@ -60,15 +70,7 @@ const renderLinesList = (lines) => {
   // downVotes:
 
   lines.forEach((line) => {
-    const voteSummary = {
-      up: 0,
-      down: 0
-    }
-    line.votes.forEach((vote) => {
-      voteSummary.up += vote.value === 1 && 1
-      voteSummary.down += vote.value === -1 && 1
-    })
-    line.voteSummary = voteSummary
+    line.voteSummary = getVoteSummary(line.votes)
   })
   // build the template using handlebars and data passed in
   const html = linesListTemplate({lines: lines})

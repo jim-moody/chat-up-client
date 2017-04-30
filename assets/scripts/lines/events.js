@@ -124,11 +124,19 @@ const onCancelSubmitLine = (e) => {
 
 const onAddVote = (e) => {
   // TODO add error message if user is not logged in
-  console.log(e)
+  // make sure user is logged in
   if (store.user) {
+    // get the jquery element
     const target = $(e.target)
+
+    // get the id of the line the user just voted on
     const lineId = target.data('id')
+
+    // get the value of what the user clicked on, i.e. up vote or down
+    // vote
     const value = target.data('value')
+
+    // build the data object, then send it to the API
     const data = {
       vote: {
         line_id: lineId,
@@ -136,8 +144,8 @@ const onAddVote = (e) => {
       }
     }
 
-    api.addVote(data).then(ui.voteSuccess).catch(ui.voteFailure)
-}
+    api.addVote(data).then(ui.addVoteSuccess).catch(ui.addVoteFailure)
+  }
 }
 
 const addEventHandlers = () => {
