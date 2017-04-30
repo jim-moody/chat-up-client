@@ -22,12 +22,12 @@
 </div>
 <div id="votes-{{line.id}}" class="voting-container">
   <div class="vote-container">
-    <span class="green-text text-darken-3" id="up-vote-{{line.id}}">{{line.voteSummary.up}}</span>
+    <span class="green-text text-darken-3" data-id="up-vote-{{line.id}}">{{line.voteSummary.up}}</span>
     <i data-value="1" data-id="{{line.id}}"class="vote up-vote material-icons blue-text text-darken-4">thumb_up</i>
   </div>
   <div class="vote-container">
     <i data-value="-1" data-id="{{line.id}}" class="vote down-vote material-icons blue-text text-darken-4">thumb_down</i>
-    <span id="down-vote-{{line.id}}" class="red-text text-darken-3">{{line.voteSummary.down}}</span>
+    <span data-id="down-vote-{{line.id}}" class="red-text text-darken-3">{{line.voteSummary.down}}</span>
   </div>
 </div>
 </div>

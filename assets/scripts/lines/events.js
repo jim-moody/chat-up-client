@@ -58,10 +58,14 @@ const onShowEditLine = (e) => {
   // same time
   $('.edit-container').remove()
   $('.line-text-container').show()
+  const target = $(e.target)
+  // get id of current line
+  const id = target.data('id')
 
-  const id = $(e.target).data('id')
-  const lineParent = $(`div[data-id=${id}]`)
+  // find the parent only IN THIS TAB
+  const lineParent = target.closest('.tab-content').find(`div[data-id=${id}]`)
   const lineContainer = lineParent.find('.line-text-container')
+  const votingContainer = lineParent.find('.voting-container')
   // get the text from the container
   const text = lineContainer.find('.line-text').text().trim()
   // show the edit template with text from parent
@@ -69,6 +73,8 @@ const onShowEditLine = (e) => {
   const html = lineEditTemplate({id})
 
   lineContainer.hide()
+  votingContainer.hide()
+
   lineParent.append(html)
   $('#line-textarea-edit').focus().val(text)
 
@@ -76,8 +82,12 @@ const onShowEditLine = (e) => {
   $('#line-edit-save').on('click', onUpdateLine)
 }
 const onCancelEditLine = (e) => {
+  // get rid of the editing textfield
   $('.edit-container').remove()
+
+  // show the line again and the voting options
   $('.line-text-container').show()
+  $('.voting-container').show()
 
   // $('.edit-container').slideUp(function () {
   //  this.remove()
@@ -144,7 +154,11 @@ const onAddVote = (e) => {
       }
     }
 
-    api.addVote(data).then(ui.addVoteSuccess).catch(ui.addVoteFailure)
+    const successHandler = (data) => {
+      ui.addVoteSuccess(data)
+    }
+
+    api.addVote(data).then(onListLines).catch(ui.addVoteFailure)
   }
 }
 
