@@ -31,7 +31,7 @@ header a:hover {
 }
 
 .form-card {
-  margin: 5% auto 0;
+  margin: 3% auto 0;
   max-width: 500px;
 
   p {
@@ -104,6 +104,7 @@ h1 {
 .input-field textarea:focus:not([readonly]) + label{
     color: #1976D2;
 }
+
 
 @media (max-width: 1200px) {
   header form {

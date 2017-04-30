@@ -12,6 +12,10 @@ div.nav-content.fixed {
 
 }
 
+nav .brand-logo {
+  margin-left: 1.5rem;
+}
+
 .user-dropdown-content {
   display: none;
   position: absolute;
@@ -32,6 +36,16 @@ div.nav-content.fixed {
     }
   }
 }
+
+.tabs {
+  display: flex;
+  max-width: 500px;
+
+  .tab {
+    flex-grow: 1;
+  }
+}
+
 
 @media only screen and (max-width: 600px) {
   div.brand-logo.left {
