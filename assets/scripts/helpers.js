@@ -1,4 +1,6 @@
 'use strict'
+import errorAlert from '../scripts/templates/alert-error.handlebars'
+import successAlert from '../scripts/templates/alert-error.handlebars'
 
 // resets a typical materialize form by finding inputs and clearing them
 const resetForm = ($form) => {
@@ -15,9 +17,18 @@ const resetForm = ($form) => {
   return $form
 }
 
-const showAlert = (parent, alert) => {
+const showAlert = (parent, text, type) => {
+  // clear any existing alerts
   $('.alert-anchor').empty()
-  parent.find('.alert-anchor').append(alert)
+
+  // set the correct template
+  const template = type === 'error' ? errorAlert : successAlert
+
+  // build template
+  const html = template({text: text})
+
+  // show the html
+  parent.find('.alert-anchor').append(html)
 }
 
 // Textarea Auto Resize
