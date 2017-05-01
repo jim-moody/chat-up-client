@@ -9,7 +9,7 @@ const submitLineSuccess = ({line}) => {
 }
 
 const submitLineFailure = (data) => {
-  console.log(data)
+  Materialize.toast('There was an issue adding your message', 3000)
 }
 
 const listLinesSuccess = ({lines}) => {
@@ -18,7 +18,7 @@ const listLinesSuccess = ({lines}) => {
 }
 
 const listLinesFailure = (data) => {
-  console.log(data)
+  Materialize.toast('Something went wrong', 3000)
 }
 
 const deleteLineSuccess = (callback) => {
@@ -26,7 +26,7 @@ const deleteLineSuccess = (callback) => {
 }
 
 const deleteLineFailure = (data) => {
-  console.log(data)
+  Materialize.toast('There was an issue deleting your message', 3000)
 }
 
 const updateLineSuccess = ({line}) => {
@@ -40,13 +40,12 @@ const updateLineSuccess = ({line}) => {
 }
 
 const updateLineFailure = (data) => {
-  console.log(data)
+  Materialize.toast('There was an issue updating your message', 3000)
 }
 
 const addVoteFailure = (data) => {
-  console.log(data)
+  Materialize.toast('There was an issue adding your vote', 3000)
 }
-
 const renderList = (anchor, lines) => {
   // add a summary to each line
   lines.forEach((line) => {
