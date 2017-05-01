@@ -154,11 +154,10 @@ const onAddVote = (e) => {
       }
     }
 
-    const successHandler = (data) => {
-      ui.addVoteSuccess(data)
-    }
-
     api.addVote(data).then(onListLines).catch(ui.addVoteFailure)
+  } else {
+    // if user isnt logged in, show an error message
+    Materialize.toast('You must be logged in to vote', 3000)
   }
 }
 
