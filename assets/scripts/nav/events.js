@@ -15,8 +15,8 @@ const onScroll = () => {
 const onShowUserContent = () => {
   // show the dropdown and hide whenever user clicks somewhere else
   const dropdown = $('#user-dropdown-content')
-  dropdown.show('fast', () => {
-    $('body').on('click', (e) => {
+  dropdown.show(100, '', function () {
+    $('body').on('click', () => {
       dropdown.hide()
       $('body').off()
     })

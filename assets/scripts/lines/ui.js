@@ -31,12 +31,12 @@ const deleteLineFailure = (data) => {
 }
 
 const updateLineSuccess = ({line}) => {
-  const lineContainer = $(`div[data-id=${line.id}]`).find('.line-text-container')
-  const votingContainer = $('.voting-container')
-  lineContainer.find('.line-text').text(line.text)
+  const lineParent = $(`div[data-id=${line.id}]`)
+  const lineDisplay = lineParent.find('.display-line-container')
+  const lineContainer = lineParent.find('.line-text-container')
+  lineContainer.find('.line-text > p').text(line.text)
 
-  lineContainer.show()
-  votingContainer.show()
+  lineDisplay.fadeIn('slow')
   $('.edit-container').remove()
 }
 

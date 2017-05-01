@@ -85,35 +85,36 @@ const onShowEditLine = (e) => {
   const id = target.data('id')
 
   // find the parent only IN THIS TAB
-  const lineParent = target.closest('.tab-content').find(`div[data-id=${id}]`)
+  const lineParent = target.closest('.line-parent')
+  const lineDisplayContainer = lineParent.find('.display-line-container')
   const lineContainer = lineParent.find('.line-text-container')
-  const votingContainer = lineParent.find('.voting-container')
   // get the text from the container
   const text = lineContainer.find('.line-text').text().trim()
   // show the edit template with text from parent
   // build the handlebar template for editing with the text
   const html = lineEditTemplate({id})
 
-  lineContainer.hide()
-  votingContainer.hide()
-
   lineParent.append(html)
-  $('#line-textarea-edit').focus().val(text)
-  textAreaAutoResize()
-  $('textarea').on('keyup keydown', function () {
-    textAreaAutoResize()
-  })
-
   $('#line-edit-cancel').on('click', onCancelEditLine)
   $('#line-edit-save').on('click', onUpdateLine)
+
+  lineDisplayContainer.fadeOut('slow', function () {
+    $('.edit-container').fadeIn()
+    $('#line-textarea-edit').focus().val(text)
+    textAreaAutoResize()
+    $('textarea').on('keyup keydown', function () {
+      textAreaAutoResize()
+    })
+  })
 }
 const onCancelEditLine = (e) => {
+  const lineContainer = $(e.target).closest('.line-parent').find('.display-line-container')
   // get rid of the editing textfield
-  $('.edit-container').remove()
-
-  // show the line again and the voting options
-  $('.line-text-container').show()
-  $('.voting-container').show()
+  $('.edit-container').fadeOut(function () {
+    this.remove()
+    // show the line again and the voting options
+    lineContainer.fadeIn()
+  })
 }
 const onShowEditOptions = (e) => {
   // show the dropdown content
@@ -133,7 +134,6 @@ const onUpdateLine = (e) => {
   // get the current line id and new text
   const id = $(e.target).data('id')
   const text = $('#line-textarea-edit').val()
-
   // build the data object
   const data = {
     id: id,
