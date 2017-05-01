@@ -16,6 +16,8 @@ const submitLineFailure = (data) => {
 const listLinesSuccess = ({lines}) => {
   renderNewestList(lines)
   renderMostPopularList(lines)
+  renderMaleFavoriteList(lines)
+  renderFemaleFavoriteList(lines)
 }
 
 const listLinesFailure = (data) => {
@@ -62,8 +64,12 @@ const renderList = (anchor, lines) => {
       const highlightClass = 'blue-text text-darken-3'
       const notHighlightedClass = '' // 'blue-text text-darken-3'
 
-      line.userUpVotedClass = value === 1 ? highlightClass : notHighlightedClass
-      line.userDownVotedClass = value === -1 ? highlightClass : notHighlightedClass
+      line.userUpVotedClass = value === 1
+        ? highlightClass
+        : notHighlightedClass
+      line.userDownVotedClass = value === -1
+        ? highlightClass
+        : notHighlightedClass
     }
   })
   // build the template using handlebars and data passed in
@@ -77,17 +83,39 @@ const renderMostPopularList = (linesList) => {
   const list = $('#lines-list-most-popular')
 
   // order the lines by total points
-  linesList = linesList.sort(sortMostPopular)
+  const popularList = linesList.sort(sortMostPopular)
 
-  renderList(list, linesList)
+  renderList(list, popularList)
+}
+const renderMaleFavoriteList = (linesList) => {
+  const list = $('#lines-list-male-favorite')
+  let maleList = linesList.map((line) => {
+    return JSON.parse(JSON.stringify(line))
+  })
+  // console.log(maleList)
+  maleList = maleList.map((line) => {
+    line.votes = line.votes.filter((vote) => vote.gender === 'm')
+    return line
+  })
+  maleList.sort(sortMostPopular)
+  renderList(list, maleList)
+}
+const renderFemaleFavoriteList = (linesList) => {
+  const list = $('#lines-list-female-favorite')
+  const femaleList = linesList.map((line) => {
+    line.votes = line.votes.filter((vote) => vote.gender === 'f')
+    return line
+  })
+  femaleList.sort(sortMostPopular)
+  renderList(list, femaleList)
 }
 const renderNewestList = (linesList) => {
   // get the list html element
   const list = $('#lines-list-newest')
   // order the lines by id, oldest to newest
-  linesList.sort((line1, line2) => line2.id - line1.id)
-  console.log(linesList)
-  renderList(list, linesList)
+  const newestList = linesList
+  newestList.sort((line1, line2) => line2.id - line1.id)
+  renderList(list, newestList)
 }
 const totalPoints = (line) => {
   const {up, down} = getVoteSummary(line.votes)
