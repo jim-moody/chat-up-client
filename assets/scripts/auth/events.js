@@ -5,7 +5,6 @@ import getFormFields from '../../../lib/get-form-fields'
 import signUpTemplate from '../templates/sign-up.handlebars'
 import signInTemplate from '../templates/sign-in.handlebars'
 import changePasswordTemplate from '../templates/change-password.handlebars'
-import alertError from '../templates/alert-error.handlebars'
 import store from '../store'
 import {showAlert} from '../helpers'
 
@@ -31,8 +30,8 @@ const onSignUp = (event) => {
   } else {
     // let the user know that they need to fill out the form
     const parent = $(event.target)
-    const alert = alertError({text: 'Please fill in all fields'})
-    showAlert(parent, alert)    // showAlert(authSelectors.alerts.signUpEmpty)
+    const text = 'Please fill in all fields'
+    showAlert(parent, text, 'error')
   }
 }
 
@@ -53,10 +52,10 @@ const onSignIn = (event) => {
     // send the data to the backend and handle success/fail
     api.signIn(data).then(ui.signInSuccess).catch(ui.signInFailure)
   } else {
+     // show a message to the user to tell them to enter credentials
     const parent = $(event.target)
-    const alert = alertError({text: 'Please fill in all fields'})
-    showAlert(parent, alert)     // show a message to the user to tell them to enter credentials
-    // showAlert(authSelectors.alerts.signInEmpty)
+    const text = 'Please fill in all fields'
+    showAlert(parent, text, 'error')
   }
 }
 

@@ -3,7 +3,6 @@ import store from '../store'
 import api from './api'
 import {resetForm, showAlert} from '../helpers'
 import {onListLines} from '../lines/events'
-import alertError from '../templates/alert-error.handlebars'
 
 const signUpSuccess = (data) => {
   // clear any alerts
@@ -28,8 +27,8 @@ const signUpSuccess = (data) => {
 
 const signUpFailure = (data) => {
   const parent = $('#sign-up')
-  const text = {text: 'There was an issue creating your account'}
-  showAlert(parent, alertError(text))
+  const text = 'There was an issue creating your account'
+  showAlert(parent, text, 'error')
 }
 
 const signInSuccess = ({user}) => {
@@ -53,8 +52,8 @@ const signInSuccess = ({user}) => {
 
 const signInFailure = (data) => {
   const parent = $('#sign-in')
-  const text = {text: 'There was an issue signing you in'}
-  showAlert(parent, alertError(text))
+  const text = 'There was an issue signing you in'
+  showAlert(parent, text, 'error')
 }
 
 const signOutSuccess = (data) => {

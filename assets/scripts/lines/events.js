@@ -4,7 +4,8 @@ import api from './api'
 import ui from './ui'
 import store from '../store'
 import lineEditTemplate from '../templates/line-edit.handlebars'
-import {resetForm} from '../helpers'
+import {resetForm, showAlert} from '../helpers'
+
 const onSubmitLine = (e) => {
   // prevent page from refreshing
   e.preventDefault()
@@ -12,20 +13,32 @@ const onSubmitLine = (e) => {
   const text = $('#line-textarea').val()
 
   // TODO add a check for text here, if empty dont submit
-
-  const userId = store.user.id
-  const data = {
-    line: {
-      text: text,
-      user_id: userId
+  if (text) {
+    // hide any error messages
+    $('.alert-anchor').empty()
+    const userId = store.user.id
+    const data = {
+      line: {
+        text: text,
+        user_id: userId
+      }
     }
+    const successCallback = (data) => {
+      ui.submitLineSuccess(data)
+      onListLines()
+    }
+    // make the call to the API
+    api.submitLine(data).then(successCallback).catch(ui.submitLineFailure)
+  } else {
+    const parent = $(e.target)
+
+    // refocus on the textarea because they will need to correct the error
+    parent.find('textarea').focus()
+
+    // show an error to user
+    const text = 'Please enter text before submitting'
+    showAlert(parent, text, 'error')
   }
-  const successCallback = (data) => {
-    ui.submitLineSuccess(data)
-    onListLines()
-  }
-  // make the call to the API
-  api.submitLine(data).then(successCallback).catch(ui.submitLineFailure)
 }
 
 const onListLines = () => {
@@ -130,6 +143,7 @@ const onShowSubmitLine = (e) => {
 
 const onCancelSubmitLine = (e) => {
   resetForm($('#submit-line-container')).slideUp()
+  $('.alert-anchor').empty()
 }
 
 const onAddVote = (e) => {
