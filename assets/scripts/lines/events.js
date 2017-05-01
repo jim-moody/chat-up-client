@@ -4,7 +4,8 @@ import api from './api'
 import ui from './ui'
 import store from '../store'
 import lineEditTemplate from '../templates/line-edit.handlebars'
-import {resetForm} from '../helpers'
+import {resetForm, textAreaAutoResize} from '../helpers'
+
 const onSubmitLine = (e) => {
   // prevent page from refreshing
   e.preventDefault()
@@ -77,6 +78,10 @@ const onShowEditLine = (e) => {
 
   lineParent.append(html)
   $('#line-textarea-edit').focus().val(text)
+  textAreaAutoResize()
+  $('textarea').on('keyup keydown', function () {
+    textAreaAutoResize()
+  })
 
   $('#line-edit-cancel').on('click', onCancelEditLine)
   $('#line-edit-save').on('click', onUpdateLine)
@@ -88,11 +93,6 @@ const onCancelEditLine = (e) => {
   // show the line again and the voting options
   $('.line-text-container').show()
   $('.voting-container').show()
-
-  // $('.edit-container').slideUp(function () {
-  //  this.remove()
-  //  $('.line-text-container').slideDown()
-  // })
 }
 const onShowEditOptions = (e) => {
   // show the dropdown content
@@ -109,8 +109,11 @@ const onShowEditOptions = (e) => {
   )
 }
 const onUpdateLine = (e) => {
+  // get the current line id and new text
   const id = $(e.target).data('id')
   const text = $('#line-textarea-edit').val()
+
+  // build the data object
   const data = {
     id: id,
     data: {
@@ -123,13 +126,24 @@ const onUpdateLine = (e) => {
   api.updateLine(data).then(ui.updateLineSuccess).catch(ui.updateLineFailure)
 }
 const onShowSubmitLine = (e) => {
+  // show the add line textarea
   $('#submit-line-container').slideDown(() => {
+    // focus on the input so the user can start typing
     $('#submit-line-container textarea').focus()
+
+    // add a handler to resize the textarea when a user types
+    $('textarea').on('keyup keydown', function () {
+      textAreaAutoResize()
+    })
   })
 }
 
 const onCancelSubmitLine = (e) => {
+  // hide the add line textarea
   resetForm($('#submit-line-container')).slideUp()
+  // resize the textarea so if the user wants to add again
+  // it isnt this big textarea, its just the normal size
+  textAreaAutoResize()
 }
 
 const onAddVote = (e) => {
