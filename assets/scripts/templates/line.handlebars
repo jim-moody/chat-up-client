@@ -1,4 +1,6 @@
-<div class="form-card card" style="display:flex;" data-id="{{line.id}}">
+<div class="form-card card line-parent"  data-id="{{line.id}}">
+  <div style="display:flex;" class="display-line-container">
+
   <div id="votes-{{line.id}}" class="voting-container">
     <div class="vote-container">
       <i data-value="1" data-id="{{line.id}}"class="vote up-vote material-icons {{line.userUpVotedClass}}">arrow_drop_up</i>
@@ -23,11 +25,19 @@
  <div class="edit-link-container"><i class="edit-options fa fa-ellipsis-v fa-lg" aria-hidden="true"></i>
    <!-- Dropdown Structure -->
    <ul  style="display:none;" class='card edit-dropdown-content'>
-     <li class="edit" data-id="{{line.id}}">Edit</li>
-     <li class="delete" data-id="{{line.id}}">Delete</li>
+     <li class="edit" data-id="{{line.id}}">
+       <i class="material-icons">edit</i>
+       Edit
+     </li>
+     <li class="delete" data-id="{{line.id}}">
+       <i class="material-icons">delete</i>
+       Delete
+     </li>
    </ul>
  </div>
  {{/if}}
+</div>
+
 </div>
 
 </div>

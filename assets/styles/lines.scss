@@ -7,7 +7,6 @@
 
     &:hover {
       cursor: pointer;
-      color: tint($black, 50%);
     }
   }
 }
@@ -29,8 +28,16 @@
 .line-text {
   flex-grow: 1;
   padding: 1.2em;
+
 }
 
+.line-parent {
+
+    p, textarea {
+      font-family: Lora, serif;
+      color: rgb(70, 70, 70);
+    }
+}
 .input-field {
   textarea {
     font-size: 1.2em;
@@ -46,6 +53,9 @@
 
   li {
     padding: 10px 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
     &:hover {
       background-color: $secondary-color;
