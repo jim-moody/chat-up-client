@@ -17,3 +17,7 @@ body {
 .main-header {
   margin-left: 0;
 }
+
+input[type="text"], input[type="number"], textarea {
+  font-size: 16px !important;
+}
