@@ -4,10 +4,11 @@
 const getVoteSummary = (votes) => {
   const voteSummary = {
     up: 0,
-    down: 0
+    down: 0,
+    total: 0
   }
   votes.forEach((vote) => {
-    switch (vote.value){
+    switch (vote.value) {
       case 1:
         voteSummary.up += 1
         break
@@ -15,6 +16,7 @@ const getVoteSummary = (votes) => {
         voteSummary.down += 1
         break
     }
+    voteSummary.total = voteSummary.up - voteSummary.down
   })
   return voteSummary
 }

@@ -72,9 +72,13 @@
 
 .voting-container {
   display: flex;
-  border-top: 1px solid gray;
-  // align-items: center;
+  border-top: 1px solid $border-color;
+  justify-content: space-around;
+  font-size: 1.2em;
 
+  .total {
+    font-size: 1.5em;
+  }
 
 }
 
