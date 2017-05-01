@@ -2,14 +2,16 @@
   align-self: center;
   margin: 1.2em;
 
-  i{
+  i {
     padding: 5px;
-  &:hover {
-    cursor: pointer;
-    color: tint($black, 50%);
-  }
+
+    &:hover {
+      cursor: pointer;
+      color: tint($black, 50%);
+    }
   }
 }
+
 .create-line-button-container {
   button {
     margin: 10px;
@@ -17,29 +19,30 @@
 }
 
 .line-text-container {
-  font-size:1.2em;
+  font-size: 1.2em;
   display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .line-text {
   flex-grow: 1;
   padding: 1.2em;
 }
+
 .input-field {
   textarea {
-      font-size:1.2em;
+    font-size: 1.2em;
   }
 }
+
 .edit-dropdown-content {
   background-color: $primary-background-color;
   position: absolute;
   right: 0;
   top: 5px;
   z-index: 2;
-
 
   li {
     padding: 10px 25px;
@@ -48,28 +51,27 @@ text-align: center;
       background-color: $secondary-color;
       cursor: pointer;
     }
-    &:nth-child(1){
+
+    &:nth-child(1) {
       border-bottom: 1px solid $border-color;
     }
   }
 }
 
 .edit-container {
-
-  display:flex;
+  display: flex;
   flex-direction: column;
-  padding:1em;
+  padding: 1em;
   width: 100%;
 
   textarea {
-      font-size:1.2em;
+    font-size: 1.2em;
   }
 }
 
 .edit-button-container {
   padding: 10px;
   align-self: flex-end;
-
 }
 
 .voting-container {
@@ -81,7 +83,6 @@ text-align: center;
   .total {
     font-size: 1.5em;
   }
-
 }
 
 .vote-container {
@@ -89,7 +90,7 @@ text-align: center;
   display: flex;
   align-self: center;
 
-  i{
+  i {
     padding: 5px;
     font-size: 2em;
     cursor: pointer;

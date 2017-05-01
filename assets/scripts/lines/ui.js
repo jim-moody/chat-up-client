@@ -2,6 +2,7 @@
 import {resetForm} from '../helpers'
 import linesListTemplate from '../templates/lines-list.handlebars'
 import {getVoteSummary} from './helpers'
+import store from '../store'
 
 const submitLineSuccess = ({line}) => {
   // reset the form so another line can be added
@@ -50,6 +51,19 @@ const renderList = (anchor, lines) => {
   // add a summary to each line
   lines.forEach((line) => {
     line.voteSummary = getVoteSummary(line.votes)
+    // if user is logged in, highlight the button that they clicked to vote on
+    // each line.  i.e. if they upvoted it, highlight the up button
+    if (store.user) {
+      const {
+        value = 0
+      } = line.votes.find((vote) => vote.user_id === store.user.id) || {}
+
+      const highlightClass = 'blue-text text-darken-3'
+      const notHighlightedClass = '' // 'blue-text text-darken-3'
+
+      line.userUpVotedClass = value === 1 ? highlightClass : notHighlightedClass
+      line.userDownVotedClass = value === -1 ? highlightClass : notHighlightedClass
+    }
   })
   // build the template using handlebars and data passed in
   const html = linesListTemplate({lines: lines})

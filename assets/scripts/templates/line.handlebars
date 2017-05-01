@@ -1,13 +1,11 @@
 <div class="form-card card" style="display:flex;" data-id="{{line.id}}">
   <div id="votes-{{line.id}}" class="voting-container">
     <div class="vote-container">
-  <!--    <span data-id="up-vote-{{line.id}}">{{line.voteSummary.up}}</span>-->
-      <i data-value="1" data-id="{{line.id}}"class="vote up-vote material-icons">arrow_drop_up</i>
+      <i data-value="1" data-id="{{line.id}}"class="vote up-vote material-icons {{line.userUpVotedClass}}">arrow_drop_up</i>
     </div>
       <div data-id="total-points-{{line.id}}" class="total vote-container">{{line.voteSummary.total}}</div>
     <div class="vote-container">
-      <i data-value="-1" data-id="{{line.id}}" class="vote down-vote material-icons">arrow_drop_down</i>
-      <!-- <span data-id="down-vote-{{line.id}}">{{line.voteSummary.down}}</span> -->
+      <i data-value="-1" data-id="{{line.id}}" class="vote down-vote material-icons {{line.userDownVotedClass}}">arrow_drop_down</i>
     </div>
   </div>
 <div style="flex: 1;" class="line-text-container">
