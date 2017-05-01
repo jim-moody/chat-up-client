@@ -1,8 +1,9 @@
 'use strict'
 import store from '../store'
 import api from './api'
-import {resetForm} from '../helpers'
+import {resetForm, showAlert} from '../helpers'
 import {onListLines} from '../lines/events'
+import alertError from '../templates/alert-error.handlebars'
 
 const signUpSuccess = (data) => {
   // clear any alerts
@@ -44,6 +45,7 @@ const signInSuccess = ({user}) => {
 
   // clear/reset the sign in form in case the user gets back there somehow
   resetForm($('#sign-in-container')).hide()
+  $('.alert-anchor').empty()
 
   $('#show-submit-line').show()
 
@@ -72,6 +74,8 @@ const signInSuccess = ({user}) => {
 }
 
 const signInFailure = (data) => {
+  const parent = $('#sign-in')
+  showAlert(parent, alertError)
   console.error(data)
   // make sure sign in is shown, just in case the user came from sign up
   // authSelectors.signIn.container.show()

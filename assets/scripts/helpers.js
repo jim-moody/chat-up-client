@@ -15,7 +15,11 @@ const resetForm = ($form) => {
   return $form
 }
 
-
+const showAlert = (parent, alert) => {
+  $('.alert-anchor').empty()
+  parent.find('.alert-anchor').append(alert)
+}
 module.exports = {
-  resetForm
+  resetForm,
+  showAlert
 }
