@@ -50,6 +50,7 @@ const addVoteFailure = (data) => {
 const renderList = (anchor, lines) => {
   // add a summary to each line
   lines.forEach((line) => {
+    line.text = line.text.trim()
     line.voteSummary = getVoteSummary(line.votes)
     // if user is logged in, highlight the button that they clicked to vote on
     // each line.  i.e. if they upvoted it, highlight the up button

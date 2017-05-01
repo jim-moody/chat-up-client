@@ -12,14 +12,7 @@
   </div>
 <div style="flex: 1;" class="line-text-container">
   <div class="line-text">
-    <p>
-    {{#if line.text}}
-    {{line.text}}
-    {{else}}
-    No description.
-    {{/if}}
-    </p>
-
+    <p>{{#if line.text}}{{line.text}}{{else}}No description.{{/if}}</p>
   </div>
  {{#if line.editable}}
  <div class="edit-link-container"><i class="edit-options fa fa-ellipsis-v fa-lg" aria-hidden="true"></i>

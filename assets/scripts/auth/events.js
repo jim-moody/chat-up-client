@@ -13,15 +13,21 @@ const onSignUp = (event) => {
   event.preventDefault()
 
   // get the data from the form
-  const data = getFormFields(event.target)
-
+  const tempData = getFormFields(event.target)
+  const {credentials} = tempData
+  const data = { credentials }
+  // set the gender programatically since its a little wonky
+  if ($('#gender-male').is(':checked')) {
+    data.credentials.gender = 'm'
+  }
+  if ($('#gender-female').is(':checked')) {
+    data.credentials.gender = 'f'
+  }
   // destructure the data
-  const {email, password, password_confirmation: passwordConfirmation} = data.credentials
+  const {email, password, password_confirmation: passwordConfirmation, gender} = data.credentials
 
   // check to make sure theres data, otherwise show a message to the user
-  if (email && password && passwordConfirmation) {
-    // show loader
-    // showFormLoader(authSelectors.signUp)
+  if (email && password && passwordConfirmation && gender) {
     // hide any alert messages
     $('.alert-anchor').empty()
 

@@ -11,6 +11,7 @@
                 <input  type="text" class="validate" name="credentials[email]" id="sign-up-email">
                 <label for="sign-up-email">Email</label>
               </div>
+
               <div class="input-field">
                 <input  type="password" class="validate" name="credentials[password]" id="sign-up-password">
                 <label for="sign-up-password">Password</label>
@@ -19,6 +20,17 @@
                 <input  type="password" class="validate"  name="credentials[password_confirmation]" id="sign-up-password-confirmation">
                 <label for="sign-up-password-confirmation">Confirm Password</label>
               </div>
+              <div class="radio-group" id="sign-up-gender">
+                <p class="label">Gender:</p>
+                <p style="float:left; margin-right: 10px;">
+                  <input name="gender" type="radio" id="gender-male" />
+                <label for="gender-male">Male</label>
+              </p>
+              <p>
+                <input name="gender" type="radio" id="gender-female" />
+                <label for="gender-female">Female</label>
+              </p>
+            </div>
               <div class="alert-anchor"></div>
 <button type="submit" name="submit" class="blue darken-3 btn form-button">          Sign Up
         </button>
