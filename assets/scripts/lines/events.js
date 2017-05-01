@@ -58,11 +58,20 @@ const onListLines = () => {
 }
 
 const onDeleteLine = (e) => {
-  // get the id from the delete button
-  const id = $(e.target).data('id')
+  // hide the delete
+  const container = $(e.target).closest('.form-card')
+  container.fadeOut('slow', function () {
+    // get the id from the delete button
+    const id = $(e.target).data('id')
 
-  // call the api with the id, then re-render the list of lines
-  api.deleteLine(id).then(onListLines).catch(ui.deleteLineFailure)
+    const failHandler = (data) => {
+      container.fadeIn()
+      ui.deleteLineFailure(data)
+    }
+
+    // call the api with the id, then re-render the list of lines
+    api.deleteLine(id).then(onListLines).catch(failHandler)
+  })
 }
 const onShowEditLine = (e) => {
   // this basically makes sure all other text containers are NOT in edit mode
@@ -163,6 +172,9 @@ const onAddVote = (e) => {
   // TODO add error message if user is not logged in
   // make sure user is logged in
   if (store.user) {
+    // if the vote is the same as the current value of users vote,
+    // do an update and set value to 0
+
     // get the jquery element
     const target = $(e.target)
 
