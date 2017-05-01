@@ -27,20 +27,13 @@ const signUpSuccess = (data) => {
 }
 
 const signUpFailure = (data) => {
-  console.error(data)
-  // clear alerts (like success alerts)
-  // hideAllAlerts()
-
-  // hide the form loader and show the button
-  // hideFormLoader(authSelectors.signUp)
-
-  // let the user know the sign up failed
-  // showAlert(authSelectors.alerts.signUpFailure)
+  const parent = $('#sign-up')
+  const text = {text: 'There was an issue creating your account'}
+  showAlert(parent, alertError(text))
 }
 
 const signInSuccess = ({user}) => {
-  $('#sign-up-container').hide()
-  $('#sign-in-container').hide()
+  $('#auth-content').empty()
   toggleMenuLinks(true)
 
   // clear/reset the sign in form in case the user gets back there somehow
@@ -48,21 +41,6 @@ const signInSuccess = ({user}) => {
   $('.alert-anchor').empty()
 
   $('#show-submit-line').show()
-
-  // clear the alerts
-  // hideAllAlerts()
-
-  // clear containers
-  // hideAllContainersExcept()
-
-  // hide the loader and put the button back for if the user signs out again
-  // hideFormLoader(authSelectors.signIn)
-
-  // show the user's email in the header
-  // menuSelectors.menu.email.text(user.email)
-
-  // show the header now that the user is signed in
-  // menuSelectors.menu.container.slideDown('fast')
 
   // put the user info in the store
   store.user = user
@@ -75,16 +53,8 @@ const signInSuccess = ({user}) => {
 
 const signInFailure = (data) => {
   const parent = $('#sign-in')
-  showAlert(parent, alertError)
-  console.error(data)
-  // make sure sign in is shown, just in case the user came from sign up
-  // authSelectors.signIn.container.show()
-
-  // hide the loader and put the button back after we know it failed
-  // hideFormLoader(authSelectors.signIn)
-
-  // show a message to the user that sign in didnt work
-  // showAlert(authSelectors.alerts.signInFailure)
+  const text = {text: 'There was an issue signing you in'}
+  showAlert(parent, alertError(text))
 }
 
 const signOutSuccess = (data) => {
