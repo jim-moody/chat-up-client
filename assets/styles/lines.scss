@@ -11,8 +11,6 @@
   }
 }
 .create-line-button-container {
-  float: right;
-
   button {
     margin: 10px;
   }
@@ -21,6 +19,9 @@
 .line-text-container {
   font-size:1.2em;
   display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
 }
 
 .line-text {
@@ -58,6 +59,7 @@
   display:flex;
   flex-direction: column;
   padding:1em;
+  width: 100%;
 
   textarea {
       font-size:1.2em;
@@ -72,9 +74,9 @@
 
 .voting-container {
   display: flex;
-  border-top: 1px solid $border-color;
   justify-content: space-around;
   font-size: 1.2em;
+  flex-direction: column;
 
   .total {
     font-size: 1.5em;
@@ -85,9 +87,11 @@
 .vote-container {
   align-items: center;
   display: flex;
-  padding: 10px;
+  align-self: center;
 
-  i, span {
+  i{
     padding: 5px;
+    font-size: 2em;
+    cursor: pointer;
   }
 }
