@@ -27,7 +27,6 @@ const listLinesSuccess = ({lines}) => {
 
 const listLinesFailure = (data) => {
   hideLoader()
-  hideLoader()
   Materialize.toast('Something went wrong', 3000)
 }
 
@@ -58,7 +57,6 @@ const updateLineFailure = (data) => {
 }
 
 const addVoteFailure = (data) => {
-  hideLoader()
   Materialize.toast('There was an issue adding your vote', 3000)
 }
 

@@ -4,7 +4,7 @@ import api from './api'
 import ui from './ui'
 import store from '../store'
 import lineEditTemplate from '../templates/line-edit.handlebars'
-import {resetForm, textAreaAutoResize, showAlert} from '../helpers'
+import {resetForm, textAreaAutoResize, showAlert, showLoader} from '../helpers'
 import loaderTemplate from '../templates/loader.handlebars'
 
 const onSubmitLine = (e) => {
@@ -36,6 +36,7 @@ const onSubmitLine = (e) => {
       onListLines()
     }
     // make the call to the API
+    showLoader()
     api.submitLine(data).then(successCallback).catch(ui.submitLineFailure)
   } else {
     // if there is no text in the form, show an error
@@ -54,8 +55,6 @@ const onListLines = () => {
   // create callback function because we want to render the list
   // and add the delete function but we cant import it in the ui file
   // because of circular dependencies
-  const loader = loaderTemplate()
-  $('#loader').append(loader)
   const successCallback = (data) => {
     ui.listLinesSuccess(data)
     $('.edit-options').on('click', onShowEditOptions)
@@ -79,7 +78,7 @@ const onDeleteLine = (e) => {
       container.fadeIn()
       ui.deleteLineFailure(data)
     }
-
+    showLoader()
     // call the api with the id, then re-render the list of lines
     api.deleteLine(id).then(onListLines).catch(failHandler)
   })
@@ -164,6 +163,7 @@ const onUpdateLine = (e) => {
     }
   }
   // make the call to the API
+  showLoader()
   api.updateLine(data).then(ui.updateLineSuccess).catch(ui.updateLineFailure)
 }
 const onShowSubmitLine = (e) => {

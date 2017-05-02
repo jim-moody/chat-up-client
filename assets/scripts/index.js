@@ -6,6 +6,7 @@ import lines from './lines/events'
 import nav from './nav/events'
 import ui from './nav/ui'
 import store from '../scripts/store'
+import {showLoader} from '../scripts/helpers'
 import 'materialize-css/bin/materialize.css'
 import 'materialize-css/bin/materialize.js'
 
@@ -19,7 +20,8 @@ const setUser = () => {
     ui.toggleMenuLinks(true)
     $('#show-submit-line').show()
   }
-  // if user is not logged in, just start the app normally
+  // then start the app
+  showLoader()
   lines.onListLines()
 }
 
