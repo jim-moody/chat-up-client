@@ -1,6 +1,7 @@
 'use strict'
 
 import auth from '../auth/events'
+import {onListLines} from '../lines/events'
 
 const onScroll = () => {
   // Hide the main part of the navigation bar if a user scrolls down
@@ -26,6 +27,10 @@ const onShowUserContent = () => {
   })
 }
 
+const onTabClick = () => {
+  onListLines()
+}
+
 // add event handlers
 const addEventHandlers = () => {
   $('#nav-sign-in-link').on('click', auth.onShowSignIn)
@@ -33,6 +38,7 @@ const addEventHandlers = () => {
   $('#nav-sign-out-link').on('click', auth.onSignOut)
   $('#nav-change-password-link').on('click', auth.onShowChangePassword)
   $('#nav-user-link').on('click', onShowUserContent)
+  $('.nav-content li.tab').on('click', onTabClick)
   $(window).scroll(onScroll)
 }
 
