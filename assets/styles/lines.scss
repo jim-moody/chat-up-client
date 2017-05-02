@@ -16,7 +16,16 @@
     margin: 10px;
   }
 }
+.line-parent {
+  margin: 0 auto;
+  background-color: white;
+  border-bottom: 1px solid rgb(222, 222, 222);
+  position: relative;
 
+  &:nth-child(1) {
+    margin-top: 1em;
+  }
+}
 .line-text-container {
   font-size: 1.2em;
   display: flex;
@@ -72,6 +81,7 @@
   }
 }
 
+
 .edit-container {
   display: flex;
   flex-direction: column;
@@ -80,6 +90,10 @@
 
   textarea {
     font-size: 1.2em;
+  }
+
+  &.input-field {
+    margin-top: 0;
   }
 }
 
