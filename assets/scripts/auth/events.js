@@ -72,12 +72,16 @@ const onSignIn = (event) => {
   }
 }
 
-const onShowSignUp = () => {
+const onShowSignUp = (e) => {
   // check to make sure the sign up form is not already on the screen
   // we dont want 100 sign-up forms!
   if (!$('#sign-up-container').is('visible')) {
     // get the sign up template and show it
     $('#auth-content').empty().append(signUpTemplate)
+
+    // focus on the input
+    e.preventDefault()
+    $('#sign-up-email').click().focus()
 
     // add necessary event handlers
     $('#sign-up').on('submit', onSignUp)
@@ -115,12 +119,17 @@ const onChangePassword = (event) => {
   }
 }
 
-const onShowSignIn = () => {
+const onShowSignIn = (e) => {
   // if the sign in is not already on screen
   // we dont want 100 sign-in forms!
   if (!$('#sign-in-container').is('visible')) {
     // get the sign in template and show it
     $('#auth-content').empty().append(signInTemplate)
+
+    e.preventDefault()
+
+    // focus on the email field
+    $('#sign-in-email').focus()
 
     // add necessary event handlers
     $('#sign-in').on('submit', onSignIn)
@@ -128,12 +137,15 @@ const onShowSignIn = () => {
   }
 }
 
-const onShowChangePassword = () => {
+const onShowChangePassword = (e) => {
   // if the change password is not already on screen
   // we dont want 100 change-password forms!
   if (!$('#change-pw-container').is('visible')) {
     // get the sign in template and show it
     $('#auth-content').empty().append(changePasswordTemplate)
+
+    e.preventDefault()
+    $('#change-pw-password').focus()
 
     // add necessary event handlers
     $('#change-pw').on('submit', onChangePassword)
