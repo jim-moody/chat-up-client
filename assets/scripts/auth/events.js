@@ -81,6 +81,7 @@ const onShowSignUp = () => {
 
     // add necessary event handlers
     $('#sign-up').on('submit', onSignUp)
+    $('#close-form').on('click', onCloseAuthForm)
   }
 }
 const onSignOut = () => {
@@ -123,6 +124,7 @@ const onShowSignIn = () => {
 
     // add necessary event handlers
     $('#sign-in').on('submit', onSignIn)
+    $('#close-form').on('click', onCloseAuthForm)
   }
 }
 
@@ -135,12 +137,18 @@ const onShowChangePassword = () => {
 
     // add necessary event handlers
     $('#change-pw').on('submit', onChangePassword)
+    $('#close-form').on('click', onCloseAuthForm)
   }
+}
+
+const onCloseAuthForm = (event) => {
+  $('#auth-content').empty()
 }
 
 module.exports = {
   onShowSignIn,
   onShowSignUp,
   onSignOut,
-  onShowChangePassword
+  onShowChangePassword,
+  onCloseAuthForm
 }
