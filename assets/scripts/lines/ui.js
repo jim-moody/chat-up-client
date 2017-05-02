@@ -1,19 +1,22 @@
 'use strict'
-import {resetForm} from '../helpers'
+import {resetForm, hideLoader} from '../helpers'
 import linesListTemplate from '../templates/lines-list.handlebars'
 import {getVoteSummary, totalPoints} from './helpers'
 import store from '../store'
 
 const submitLineSuccess = ({line}) => {
+  hideLoader()
   // reset the form so another line can be added
   resetForm($('#submit-line-container')).slideUp()
 }
 
 const submitLineFailure = (data) => {
+  hideLoader()
   Materialize.toast('There was an issue adding your message', 3000)
 }
 
 const listLinesSuccess = ({lines}) => {
+  hideLoader()
   // render each of the groupings.
   // ORDER MATTERS because we are doing sorting on an array of objects
   renderNewestList(lines)
@@ -23,18 +26,23 @@ const listLinesSuccess = ({lines}) => {
 }
 
 const listLinesFailure = (data) => {
+  hideLoader()
+  hideLoader()
   Materialize.toast('Something went wrong', 3000)
 }
 
 const deleteLineSuccess = (callback) => {
+  hideLoader()
   callback()
 }
 
 const deleteLineFailure = (data) => {
+  hideLoader()
   Materialize.toast('There was an issue deleting your message', 3000)
 }
 
 const updateLineSuccess = ({line}) => {
+  hideLoader()
   const lineParent = $(`div[data-id=${line.id}]`)
   const lineDisplay = lineParent.find('.display-line-container')
   const lineContainer = lineParent.find('.line-text-container')
@@ -45,10 +53,12 @@ const updateLineSuccess = ({line}) => {
 }
 
 const updateLineFailure = (data) => {
+  hideLoader()
   Materialize.toast('There was an issue updating your message', 3000)
 }
 
 const addVoteFailure = (data) => {
+  hideLoader()
   Materialize.toast('There was an issue adding your vote', 3000)
 }
 

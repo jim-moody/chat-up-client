@@ -1,11 +1,13 @@
 'use strict'
 import store from '../store'
 import api from './api'
-import {resetForm, showAlert} from '../helpers'
+import {resetForm, showAlert, hideLoader} from '../helpers'
 import {onListLines} from '../lines/events'
 import {toggleMenuLinks} from '../nav/ui'
 
 const signUpSuccess = (data) => {
+  hideLoader()
+
   // get the credentials the user entered when signing up
   // so we can sign the user in automatically
   const credentials = {
@@ -21,6 +23,8 @@ const signUpSuccess = (data) => {
 }
 
 const signUpFailure = (data) => {
+  hideLoader()
+
   // show an alert to the user letting them know that the sign up failed
   const parent = $('#sign-up')
   const text = 'There was an issue creating your account'
@@ -28,6 +32,7 @@ const signUpFailure = (data) => {
 }
 
 const signInSuccess = ({user}) => {
+  hideLoader()
   // add the user object to session storage for persistent login
   sessionStorage.setItem('user', JSON.stringify(user))
 
@@ -52,6 +57,7 @@ const signInSuccess = ({user}) => {
 }
 
 const signInFailure = (data) => {
+  hideLoader()
   // show an error to the user
   const parent = $('#sign-in')
   const text = 'There was an issue signing you in'
@@ -59,6 +65,8 @@ const signInFailure = (data) => {
 }
 
 const signOutSuccess = (data) => {
+  hideLoader()
+
   // change the menu so that the user has the "logged out" options
   toggleMenuLinks()
 
@@ -81,16 +89,22 @@ const signOutSuccess = (data) => {
 }
 
 const signOutFailure = (data) => {
+  hideLoader()
+
   // show an error the user
   Materialize.toast('There was an issue signing out', 3000)
 }
 
 const changePasswordSuccess = (data) => {
+  hideLoader()
+
   // just hide the form, no alert necessary
   resetForm($('#change-pw-container')).hide()
 }
 
 const changePasswordFailure = (data) => {
+  hideLoader()
+
   // show an error to the user
   Materialize.toast('There was an issue changing your password', 3000)
 }

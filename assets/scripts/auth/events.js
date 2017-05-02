@@ -6,7 +6,7 @@ import signUpTemplate from '../templates/sign-up.handlebars'
 import signInTemplate from '../templates/sign-in.handlebars'
 import changePasswordTemplate from '../templates/change-password.handlebars'
 import store from '../store'
-import {showAlert} from '../helpers'
+import {showAlert, showLoader} from '../helpers'
 
 const onSignUp = (event) => {
   // prevent a page refresh
@@ -36,6 +36,8 @@ const onSignUp = (event) => {
     // hide any alert messages
     $('.alert-anchor').empty()
 
+    showLoader()
+
     // send the data to the backend and handle success/fail
     api.signUp(data).then(ui.signUpSuccess).catch(ui.signUpFailure)
   } else {
@@ -57,6 +59,8 @@ const onSignIn = (event) => {
   // check to make sure theres data, otherwise show a message to the user
   if (data.credentials.email && data.credentials.password) {
     $('.alert-anchor').empty()
+
+    showLoader()
 
     // send the data to the backend and handle success/fail
     api.signIn(data).then(ui.signInSuccess).catch(ui.signInFailure)
@@ -80,6 +84,8 @@ const onShowSignUp = () => {
   }
 }
 const onSignOut = () => {
+  showLoader()
+
   // sign out the user and handle success/fail
   api.signOut(store.user).then(ui.signOutSuccess).catch(ui.signOutFailure)
 }
@@ -96,6 +102,8 @@ const onChangePassword = (event) => {
 
   // check to make sure the fields were filled in
   if (old && newPassword) {
+    showLoader()
+
     api.changePassword(data).then(ui.changePasswordSuccess).catch(ui.changePasswordFailure)
   } else {
     // show an alert letting the user know they need to fill in all the fields

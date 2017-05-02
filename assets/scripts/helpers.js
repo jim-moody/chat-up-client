@@ -1,6 +1,7 @@
 'use strict'
 import errorAlert from '../scripts/templates/alert-error.handlebars'
 import successAlert from '../scripts/templates/alert-error.handlebars'
+import loaderTemplate from '../scripts/templates/loader.handlebars'
 
 // resets a typical materialize form by finding inputs and clearing them
 const resetForm = ($form) => {
@@ -55,8 +56,18 @@ const textAreaAutoResize = () => {
   })
 }
 
+const showLoader = () => {
+  const loader = loaderTemplate()
+  $('#loader').append(loader)
+}
+const hideLoader = () => {
+  $('#loader').empty()
+}
+
 module.exports = {
   resetForm,
   showAlert,
+  showLoader,
+  hideLoader,
   textAreaAutoResize
 }

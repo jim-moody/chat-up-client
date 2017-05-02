@@ -5,6 +5,7 @@ import ui from './ui'
 import store from '../store'
 import lineEditTemplate from '../templates/line-edit.handlebars'
 import {resetForm, textAreaAutoResize, showAlert} from '../helpers'
+import loaderTemplate from '../templates/loader.handlebars'
 
 const onSubmitLine = (e) => {
   // prevent page from refreshing
@@ -53,6 +54,8 @@ const onListLines = () => {
   // create callback function because we want to render the list
   // and add the delete function but we cant import it in the ui file
   // because of circular dependencies
+  const loader = loaderTemplate()
+  $('#loader').append(loader)
   const successCallback = (data) => {
     ui.listLinesSuccess(data)
     $('.edit-options').on('click', onShowEditOptions)
