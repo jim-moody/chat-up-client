@@ -90,7 +90,9 @@ const onShowEditLine = (e) => {
   // we do this because we dont want the user editing multiple lines at the
   // same time
   $('.edit-container').remove()
-  $('.line-text-container').show()
+  $('.display-line-container').show()
+
+  e.preventDefault()
 
   // get the current target in jquery
   const target = $(e.target)
