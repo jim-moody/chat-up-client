@@ -16,13 +16,25 @@ const submitLineFailure = (data) => {
 }
 
 const listLinesSuccess = ({lines}) => {
+  const target = $('.tab a.active').attr('href')
+$('.tab-content').empty()
+  switch (target) {
+    case '#newest':
+      renderNewestList(lines)
+      break
+    case '#most-popular':
+      renderMostPopularList(lines)
+      break
+    case '#male-favorite':
+      renderMaleFavoriteList(lines)
+      break
+    case '#female-favorite':
+      renderFemaleFavoriteList(lines)
+      break
+  }
   hideLoader()
   // render each of the groupings.
   // ORDER MATTERS because we are doing sorting on an array of objects
-  renderNewestList(lines)
-  renderMostPopularList(lines)
-  renderMaleFavoriteList(lines)
-  renderFemaleFavoriteList(lines)
 }
 
 const listLinesFailure = (data) => {
@@ -55,8 +67,11 @@ const updateLineFailure = (data) => {
   hideLoader()
   Materialize.toast('There was an issue updating your message', 3000)
 }
-
+const addVoteSuccess = (data) => {
+  // do nothing
+}
 const addVoteFailure = (data) => {
+
   Materialize.toast('There was an issue adding your vote', 3000)
 }
 
@@ -68,7 +83,13 @@ const renderList = (anchor, lines) => {
     // if user is logged in, highlight the button that they clicked to vote on
     // each line.  i.e. if they upvoted it, highlight the up button
     if (store.user) {
-      line = setVoteActionHighlight(line, store.user.id)
+      // get the value of the user's vote.  If they have no vote,
+      // set the value to = 0
+      const { value = 0 } = line.votes.find((vote) =>
+        vote.user_id === store.user.id) || {}
+
+      line.userUpVotedClass = voteActionClass(value, 'up')
+      line.userDownVotedClass = voteActionClass(value, 'down')
     }
   })
   // build the template using handlebars and data passed in
@@ -81,23 +102,12 @@ const renderList = (anchor, lines) => {
 // this figures out which vote action should be highlighted (if it all)
 // for example, if the user has upvoted a particular conversation starter, then
 // the up arrow should be highlighted
-const setVoteActionHighlight = (line, userId) => {
-  // get the value of the user's vote.  If they have no vote,
-  // set the value to = 0
-  const { value = 0 } = line.votes.find((vote) =>
-    vote.user_id === userId) || {}
-
-  const highlightClass = 'blue lighten-5 blue-text text-darken-3'
-  const notHighlightedClass = ''
-
-  line.userUpVotedClass = value === 1
-    ? highlightClass
-    : notHighlightedClass
-  line.userDownVotedClass = value === -1
-    ? highlightClass
-    : notHighlightedClass
-
-  return line
+const voteActionClass = (value, action) => {
+  let highlightClass = ''
+  if (value === 1 && action === 'up' || value === -1 && action === 'down') {
+    highlightClass = 'blue lighten-5'
+  }
+  return highlightClass
 }
 
 const renderMostPopularList = (linesList) => {
@@ -175,5 +185,6 @@ module.exports = {
   deleteLineFailure,
   updateLineSuccess,
   updateLineFailure,
-  addVoteFailure
+  addVoteFailure,
+  voteActionClass
 }
