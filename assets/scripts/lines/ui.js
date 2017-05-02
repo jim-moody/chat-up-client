@@ -186,5 +186,6 @@ module.exports = {
   updateLineSuccess,
   updateLineFailure,
   addVoteFailure,
-  voteActionClass
+  voteActionClass,
+  addVoteSuccess
 }
