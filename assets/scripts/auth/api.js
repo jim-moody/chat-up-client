@@ -30,7 +30,6 @@ const signOut = (user) => {
 }
 
 const changePassword = (data) => {
-  console.log(data)
   return $.ajax({
     url: config.apiOrigin + '/change-password/' + store.user.id,
     method: 'PATCH',

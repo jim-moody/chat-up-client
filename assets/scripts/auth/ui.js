@@ -26,6 +26,8 @@ const signUpFailure = (data) => {
 }
 
 const signInSuccess = ({user}) => {
+  console.log(user)
+  sessionStorage.setItem('user', JSON.stringify(user))
   $('#auth-content').empty()
   toggleMenuLinks(true)
 
@@ -63,7 +65,8 @@ const signOutSuccess = (data) => {
   // see above
   $('#show-submit-line').hide()
 
-  store.user = {}
+  store.user = undefined
+  sessionStorage.removeItem('user')
   onListLines()
 }
 
@@ -96,5 +99,6 @@ module.exports = {
   signOutSuccess,
   signOutFailure,
   changePasswordSuccess,
-  changePasswordFailure
+  changePasswordFailure,
+  toggleMenuLinks
 }

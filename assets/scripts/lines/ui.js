@@ -49,6 +49,7 @@ const updateLineFailure = (data) => {
 const addVoteFailure = (data) => {
   Materialize.toast('There was an issue adding your vote', 3000)
 }
+
 const renderList = (anchor, lines) => {
   // add a summary to each line
   lines.forEach((line) => {
