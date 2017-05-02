@@ -17,7 +17,8 @@ const submitLineFailure = (data) => {
 
 const listLinesSuccess = ({lines}) => {
   const target = $('.tab a.active').attr('href')
-$('.tab-content').empty()
+  $('.tab-content').empty()
+  // render each of the groupings.
   switch (target) {
     case '#newest':
       renderNewestList(lines)
@@ -33,8 +34,6 @@ $('.tab-content').empty()
       break
   }
   hideLoader()
-  // render each of the groupings.
-  // ORDER MATTERS because we are doing sorting on an array of objects
 }
 
 const listLinesFailure = (data) => {
@@ -152,8 +151,10 @@ const renderFemaleFavoriteList = (linesList) => {
     return line
   })
 
-  // sort by most popular and render
+  // sort by most popular
   femaleList.sort(sortMostPopular)
+
+  // render the list
   renderList(list, femaleList)
 }
 const renderNewestList = (linesList) => {
@@ -171,7 +172,13 @@ const renderNewestList = (linesList) => {
 const sortMostPopular = (line1, line2) => {
   const sum = totalPoints(line2) - totalPoints(line1)
   if (sum === 0) {
-    return line2.votes.length - line1.votes.length
+    // order by # of votes if its not the same
+    if (line2.votes.length !== line1.votes.length) {
+      return line2.votes.length - line1.votes.length
+      // if they have the same # of votes, just order by id
+    } else {
+      return line2.id - line1.id
+    }
   }
   return sum
 }
