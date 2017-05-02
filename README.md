@@ -26,19 +26,6 @@ My biggest struggled with this project was dealing with complexities with the us
 
 -   See [issues](https://github.com/jim-moody/conversation-starter/issues)
 
-## Features
-
-| Name              | Description                                                           |
-| ----------------- | --------------------------------------------------------------------- |
-| Persistent Login  | User will stay logged in until they close the browser                 |
-| Admin Roles       | I have an admin role so I can delete or edit offensive posts          |
-| Loading animation | Show a loader for slow networks                                       |
-| Groupings         | Sort/filter for different views of the data                           |
-| Input focus       | Focus on the create line input automatically so user can start typing |
-| Error Handling    | Show user an error if they try to vote without logging in             |
-| Header animation  | If user scrolls down, the top part of the header is hidden            |
-| Responsive        | Fully responsive, displays on all device screen sizes                 |
-
 ## User Stories
 
 -   As a user I want to be able to sign in so I can contribute to the site
