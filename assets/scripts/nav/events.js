@@ -19,7 +19,7 @@ const onShowUserContent = () => {
   // whenever user clicks somewhere else
   const dropdown = $('#user-dropdown-content')
   dropdown.show(100, '', function () {
-    $('body').on('click', () => {
+    $('body').on('click touchstart', () => {
       dropdown.hide()
       $('body').off()
     })
