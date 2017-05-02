@@ -5,6 +5,12 @@ import {getVoteSummary, totalPoints} from './helpers'
 import store from '../store'
 
 const submitLineSuccess = ({line}) => {
+  // if the user isnt in the newest tab, they won't see their post show up
+  // because it wont have enough votes initially
+  // so let them know to switch to that tab
+  if ($('.tab a.active').attr('href') !== '#newest') {
+    Materialize.toast('Check the Newest tab to see your submission!', 3000)
+  }
   hideLoader()
   // reset the form so another line can be added
   resetForm($('#submit-line-container')).slideUp()
@@ -177,7 +183,7 @@ const sortMostPopular = (line1, line2) => {
       return line2.votes.length - line1.votes.length
       // if they have the same # of votes, just order by id
     } else {
-      return line2.id - line1.id
+      return line1.id - line2.id
     }
   }
   return sum
