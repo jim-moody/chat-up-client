@@ -62,7 +62,7 @@ const renderList = (anchor, lines) => {
       } = line.votes.find((vote) => vote.user_id === store.user.id) || {}
 
       const highlightClass = 'blue lighten-5 blue-text text-darken-3'
-      const notHighlightedClass = 'blue-text text-darken-3'
+      const notHighlightedClass = ''
 
       line.userUpVotedClass = value === 1
         ? highlightClass

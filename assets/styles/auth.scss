@@ -26,11 +26,6 @@ p.label {
   padding-left: 25px;
 }
 
-a:focus,
-header a:hover {
-  background-color: darken($primary-color, 10%);
-}
-
 .form-subtext {
   text-align: center;
   padding:10px;
