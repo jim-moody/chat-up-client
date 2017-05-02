@@ -1,6 +1,47 @@
-# Openers
+# Conversation Starter
 
-Application to post and vote on opening lines to talk to someone
+-   [Live Demo](https://jim-moody.github.io/conversation-starter)
+
+## Description
+
+Ever have a hard time thinking of what to say to someone?  You want to talk to them but you just can't find the words?
+
+Thanks to Conversation Starter, you don't need to worry anymore.  Find the best conversation starters around, curated by you and your peers!
+
+## Approach
+
+Here is my schedule:
+
+-   Day 1 - Finish Posts API
+-   Day 2 - Finish Auth API and relate posts to auth
+-   Day 3 - Create client for posts
+-   Day 4 - Create client for auth
+-   Day 5 - Add styling and cleanup bugs
+
+I ended up sticking to this schedule for the most part. The one thing I didn't have in here is voting.  Because I was a little ahead of schedule I ended up implementing voting which took me longer than pretty much everything else combined.
+
+My biggest struggled with this project was dealing with complexities with the user experience. There are a few things with the experience that are a little "jarring" and I would like to ease those transitions, but it is difficult because you also want to keep your data in sync with the backend.
+
+## Unsolved Problems
+
+-   See [issues](https://github.com/jim-moody/conversation-starter/issues)
+
+## User Stories
+
+-   As a user I want to be able to sign in so I can contribute to the site
+-   As a user I want to be able to sign out so that no one can access my account
+-   As a user I want to be able to change my password so that I can keep my account secure
+-   As a user I want to be able to vote on conversation starters so I can give my own feedback
+-   As a user I want to be able to delete conversation starters that I have added so that others can no longer see it
+-   As a user I want to be able to edit my conversation starters so that I can correct typos
+
+## Wireframes
+
+[Proto.io Wireframe](https://pr.to/1N29MD/)
+
+## API
+
+The API was written in Ruby on Rails, check out the [source code](https://github.com/jim-moody/conversation-starter-api)
 
 ## [License](LICENSE)
 
