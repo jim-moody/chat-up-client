@@ -2,7 +2,7 @@
 
 const config = {
   apiOrigins: {
-    production: 'https://chat-up-api.herokuapp.com'
+    production: 'https://conversation-starter-api.herokuapp.com'
   }
 }
 
