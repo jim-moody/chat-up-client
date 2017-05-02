@@ -3,11 +3,11 @@
 
   <div id="votes-{{line.id}}" class="voting-container">
     <div class="vote-container">
-      <i data-value="1" data-id="{{line.id}}"class="blue-text text-darken-3 vote up-vote material-icons {{line.userUpVotedClass}}">arrow_drop_up</i>
+      <i data-action="up" data-value="1" data-id="{{line.id}}"class="blue-text text-darken-3 vote up-vote material-icons {{line.userUpVotedClass}}">arrow_drop_up</i>
     </div>
       <div data-id="total-points-{{line.id}}" class="total vote-container">{{line.voteSummary.total}}</div>
     <div class="vote-container">
-      <i data-value="-1" data-id="{{line.id}}" class="blue-text text-darken-3 vote down-vote material-icons {{line.userDownVotedClass}}">arrow_drop_down</i>
+      <i data-action="down" data-value="-1" data-id="{{line.id}}" class="blue-text text-darken-3 vote down-vote material-icons {{line.userDownVotedClass}}">arrow_drop_down</i>
     </div>
   </div>
 <div style="flex: 1;" class="line-text-container">
