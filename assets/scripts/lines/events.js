@@ -62,6 +62,7 @@ const onListLines = () => {
     $('.edit').on('click', onShowEditLine)
     $('.vote').on('click', onAddVote)
   }
+  showLoader()
 
   // call the api with our success callback function
   api.listLines().then(successCallback).catch(ui.listLinesFailure)
@@ -208,6 +209,60 @@ const onAddVote = (e) => {
       // vote
       const value = target.data('value')
 
+      // quickly toggle the class so that user doesnt have to
+      // wait for response to see it update
+      // if there is a failure we re-render the whole thing anyways
+      const parent = target.closest('.voting-container') // $(`.line-parent[data-id="${lineId}"]`)
+
+      // update the total points
+      const totalPointsElement = parent.find('.total.vote-container')
+      let currentPoints = parseInt(totalPointsElement.text())
+      const upVote = parent.find('.up-vote')
+      const downVote = parent.find('.down-vote')
+      let newUpVoteClass = ''
+      let newDownVoteClass = ''
+      // if current vote is an up vote
+      if (value === 1) {
+        // and up vote was selected
+        if (upVote.hasClass('blue lighten-5')) {
+          // subtract 1 and remove class
+          currentPoints -= 1
+          newUpVoteClass = ''
+          // and up vote was not selected
+          // but down vote was selected
+        } else if (downVote.hasClass('blue lighten-5')) {
+          // add 2 and add class
+          newUpVoteClass = 'blue lighten-5'
+          currentPoints += 2
+          // and no vote was selected
+        } else {
+          currentPoints += 1
+          newUpVoteClass = 'blue lighten-5'
+        }
+        // current vote is a down vote
+      } else if (value === -1) {
+        // down vote was selected
+        if (parent.find('.down-vote').hasClass('blue lighten-5')) {
+          currentPoints += 1
+          // down vote was not selected
+        } else if (upVote.hasClass('blue lighten-5')) {
+          // subtract 2 and add class
+          currentPoints -= 2
+          newDownVoteClass = 'blue lighten-5'
+          // and no vote was selected
+        } else {
+          // subtract 1 and add class
+          currentPoints -= 1
+          newDownVoteClass = 'blue lighten-5'
+        }
+      }
+      upVote.removeClass('blue lighten-5')
+      upVote.addClass(newUpVoteClass)
+      downVote.removeClass('blue lighten-5')
+      downVote.addClass(newDownVoteClass)
+
+      totalPointsElement.text(currentPoints)
+
       // build the data object, then send it to the API
       const data = {
         vote: {
@@ -216,7 +271,12 @@ const onAddVote = (e) => {
         }
       }
 
-      api.addVote(data).then(onListLines).catch(ui.addVoteFailure)
+      const failHandler = () => {
+        onListLines()
+        ui.addVoteFailure
+      }
+
+      api.addVote(data).then(ui.addVoteSuccess).catch(failHandler)
     }
   } else {
     // if user isnt logged in, show an error message
