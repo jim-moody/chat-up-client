@@ -10,12 +10,15 @@ const onSubmitLine = (e) => {
   // prevent page from refreshing
   e.preventDefault()
 
+  // get the text from the form
   const text = $('#line-textarea').val()
 
-  // TODO add a check for text here, if empty dont submit
+  // check to make sure the user actually entered some text
   if (text) {
     // hide any error messages
     $('.alert-anchor').empty()
+
+    // build up the data object
     const userId = store.user.id
     const data = {
       line: {
@@ -23,13 +26,18 @@ const onSubmitLine = (e) => {
         user_id: userId
       }
     }
+
+    // customize the callback for a successful response
     const successCallback = (data) => {
       ui.submitLineSuccess(data)
+
+      // re-render the list after the line is added to the database
       onListLines()
     }
     // make the call to the API
     api.submitLine(data).then(successCallback).catch(ui.submitLineFailure)
   } else {
+    // if there is no text in the form, show an error
     const parent = $(e.target)
 
     // refocus on the textarea because they will need to correct the error
@@ -80,7 +88,10 @@ const onShowEditLine = (e) => {
   // same time
   $('.edit-container').remove()
   $('.line-text-container').show()
+
+  // get the current target in jquery
   const target = $(e.target)
+
   // get id of current line
   const id = target.data('id')
 
@@ -88,19 +99,26 @@ const onShowEditLine = (e) => {
   const lineParent = target.closest('.line-parent')
   const lineDisplayContainer = lineParent.find('.display-line-container')
   const lineContainer = lineParent.find('.line-text-container')
-  // get the text from the container
+
+  // get the text from the container and trim it so we dont have trailing
+  // whitespace
   const text = lineContainer.find('.line-text').text().trim()
+
   // show the edit template with text from parent
   // build the handlebar template for editing with the text
   const html = lineEditTemplate({id})
-
   lineParent.append(html)
+
+  // add event handlers to the handlebars template
   $('#line-edit-cancel').on('click', onCancelEditLine)
   $('#line-edit-save').on('click', onUpdateLine)
 
+  // fade out the text container and fade in the edit container
   lineDisplayContainer.fadeOut('slow', function () {
     $('.edit-container').fadeIn()
     $('#line-textarea-edit').focus().val(text)
+
+    // make sure we resize the textarea as the user types
     textAreaAutoResize()
     $('textarea').on('keyup keydown', function () {
       textAreaAutoResize()
@@ -127,8 +145,7 @@ const onShowEditOptions = (e) => {
       ul.hide()
       $('body').off()
     })
-  }
-  )
+  })
 }
 const onUpdateLine = (e) => {
   // get the current line id and new text

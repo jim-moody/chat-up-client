@@ -1,6 +1,6 @@
 'use strict'
 
-// create voteSummary from votes array with two keys
+// create voteSummary from votes array with 3 keys
 const getVoteSummary = (votes) => {
   const voteSummary = {
     up: 0,
@@ -21,6 +21,12 @@ const getVoteSummary = (votes) => {
   return voteSummary
 }
 
+const totalPoints = (line) => {
+  const {up, down} = getVoteSummary(line.votes)
+  return up - down
+}
+
 module.exports = {
-  getVoteSummary
+  getVoteSummary,
+  totalPoints
 }

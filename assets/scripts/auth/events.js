@@ -12,21 +12,26 @@ const onSignUp = (event) => {
   // prevent a page refresh
   event.preventDefault()
 
-  // get the data from the form
+  // get the credentials from the form
   const tempData = getFormFields(event.target)
   const {credentials} = tempData
-  const data = { credentials }
-  // set the gender programatically since its a little wonky
+
+  // wrap the credentials with an object because that is how the API expects it
+  const data = {
+    credentials
+  }
+
+  // set the gender programatically since its in a radio button and
+  // getFormFields doesn't know how to deal with it
   if ($('#gender-male').is(':checked')) {
     data.credentials.gender = 'm'
   }
   if ($('#gender-female').is(':checked')) {
     data.credentials.gender = 'f'
   }
-  // destructure the data
+  // destructure the data and check that we have data, otherwiser the user
+  // must not have filled in the information
   const {email, password, password_confirmation: passwordConfirmation, gender} = data.credentials
-
-  // check to make sure theres data, otherwise show a message to the user
   if (email && password && passwordConfirmation && gender) {
     // hide any alert messages
     $('.alert-anchor').empty()
@@ -34,10 +39,11 @@ const onSignUp = (event) => {
     // send the data to the backend and handle success/fail
     api.signUp(data).then(ui.signUpSuccess).catch(ui.signUpFailure)
   } else {
-    // let the user know that they need to fill out the form
-    const parent = $(event.target)
-    const text = 'Please fill in all fields'
-    showAlert(parent, text, 'error')
+    // let the user know that they need to fill out the form, because they must
+    // have missed a field
+    const form = $(event.target)
+    const errorText = 'Please fill in all fields'
+    showAlert(form, errorText, 'error')
   }
 }
 
@@ -52,21 +58,18 @@ const onSignIn = (event) => {
   if (data.credentials.email && data.credentials.password) {
     $('.alert-anchor').empty()
 
-    // show loader
-    // showFormLoader(authSelectors.signIn)
-
     // send the data to the backend and handle success/fail
     api.signIn(data).then(ui.signInSuccess).catch(ui.signInFailure)
   } else {
-     // show a message to the user to tell them to enter credentials
-    const parent = $(event.target)
-    const text = 'Please fill in all fields'
-    showAlert(parent, text, 'error')
+    // show a message to the user to tell them to enter credentials
+    const form = $(event.target)
+    const errorText = 'Please fill in all fields'
+    showAlert(form, errorText, 'error')
   }
 }
 
 const onShowSignUp = () => {
-  // if the sign up is not already on screen
+  // check to make sure the sign up form is not already on the screen
   // we dont want 100 sign-up forms!
   if (!$('#sign-up-container').is('visible')) {
     // get the sign up template and show it
@@ -77,8 +80,10 @@ const onShowSignUp = () => {
   }
 }
 const onSignOut = () => {
+  // sign out the user and handle success/fail
   api.signOut(store.user).then(ui.signOutSuccess).catch(ui.signOutFailure)
 }
+
 const onChangePassword = (event) => {
   // keep page from refreshing
   event.preventDefault()
@@ -87,13 +92,18 @@ const onChangePassword = (event) => {
   const data = getFormFields(event.target)
 
   // destructure the data
-  // const {password, password_confirmation: passwordConfirmation} = data.credentials
+  const { old, new: newPassword } = data.passwords
 
-  // if (password && passwordConfirmation) {
-  api.changePassword(data)
-    .then(ui.changePasswordSuccess)
-    .catch(ui.changePasswordFailure)
-  // }
+  // check to make sure the fields were filled in
+  if (old && newPassword) {
+    api.changePassword(data).then(ui.changePasswordSuccess).catch(ui.changePasswordFailure)
+  } else {
+    // show an alert letting the user know they need to fill in all the fields
+    // because they must have missed a field
+    const form = $(event.target)
+    const errorText = 'Please fill in all fields'
+    showAlert(form, errorText, 'error')
+  }
 }
 
 const onShowSignIn = () => {

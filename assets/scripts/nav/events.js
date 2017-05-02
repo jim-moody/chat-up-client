@@ -3,6 +3,8 @@
 import auth from '../auth/events'
 
 const onScroll = () => {
+  // Hide the main part of the navigation bar if a user scrolls down
+  // so we put more emphasis on the grouping tabs
   const navContentOffset = $('.nav-content').offset().top - $(window).scrollTop()
   if (scrollY > navContentOffset) {
     $('.nav-wrapper').fadeOut('slow')
@@ -13,7 +15,8 @@ const onScroll = () => {
 }
 
 const onShowUserContent = () => {
-  // show the dropdown and hide whenever user clicks somewhere else
+  // show the dropdown and  add event handler to hide it
+  // whenever user clicks somewhere else
   const dropdown = $('#user-dropdown-content')
   dropdown.show(100, '', function () {
     $('body').on('click', () => {
@@ -22,6 +25,8 @@ const onShowUserContent = () => {
     })
   })
 }
+
+// add event handlers
 const addEventHandlers = () => {
   $('#nav-sign-in-link').on('click', auth.onShowSignIn)
   $('#nav-sign-up-link').on('click', auth.onShowSignUp)

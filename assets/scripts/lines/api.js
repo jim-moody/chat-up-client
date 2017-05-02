@@ -36,7 +36,6 @@ const deleteLine = (id) => {
 }
 
 const updateLine = ({id, data}) => {
-  console.log(data)
   return $.ajax({
     url: config.apiOrigin + `/lines/${id}`,
     method: 'PATCH',
@@ -48,7 +47,6 @@ const updateLine = ({id, data}) => {
 }
 
 const addVote = (data) => {
-  console.log(data)
   return $.ajax({
     url: config.apiOrigin + '/votes',
     method: 'POST',

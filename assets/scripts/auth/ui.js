@@ -3,6 +3,7 @@ import store from '../store'
 import api from './api'
 import {resetForm, showAlert} from '../helpers'
 import {onListLines} from '../lines/events'
+import {toggleMenuLinks} from '../nav/ui'
 
 const signUpSuccess = (data) => {
   // get the credentials the user entered when signing up
@@ -20,21 +21,27 @@ const signUpSuccess = (data) => {
 }
 
 const signUpFailure = (data) => {
+  // show an alert to the user letting them know that the sign up failed
   const parent = $('#sign-up')
   const text = 'There was an issue creating your account'
   showAlert(parent, text, 'error')
 }
 
 const signInSuccess = ({user}) => {
-  console.log(user)
+  // add the user object to session storage for persistent login
   sessionStorage.setItem('user', JSON.stringify(user))
+
+  // get rid of the sign in form
   $('#auth-content').empty()
+
+  // show the logged in links
   toggleMenuLinks(true)
 
   // clear/reset the sign in form in case the user gets back there somehow
   resetForm($('#sign-in-container')).hide()
   $('.alert-anchor').empty()
 
+  // show the user the button to add conversation starters because they are logged in
   $('#show-submit-line').show()
 
   // put the user info in the store
@@ -45,52 +52,49 @@ const signInSuccess = ({user}) => {
 }
 
 const signInFailure = (data) => {
+  // show an error to the user
   const parent = $('#sign-in')
   const text = 'There was an issue signing you in'
   showAlert(parent, text, 'error')
 }
 
 const signOutSuccess = (data) => {
+  // change the menu so that the user has the "logged out" options
   toggleMenuLinks()
 
   // hide change pw just in case it was shown
   resetForm($('#change-pw-container'))
   $('#auth-content').empty()
 
-  // hide and reset the submit line container in case it is
+  // hide and reset the submit line container and button in case it is
   // on the screen when the user signs out because you cant submit
   // a new line when you arent logged in!
   resetForm($('#submit-line-container')).hide()
-
-  // see above
   $('#show-submit-line').hide()
 
+  // clear the user info from memory so a new user can log in
   store.user = undefined
   sessionStorage.removeItem('user')
+
+  // re render the conversation starters
   onListLines()
 }
 
 const signOutFailure = (data) => {
+  // show an error the user
   Materialize.toast('There was an issue signing out', 3000)
 }
 
 const changePasswordSuccess = (data) => {
+  // just hide the form, no alert necessary
   resetForm($('#change-pw-container')).hide()
 }
 
 const changePasswordFailure = (data) => {
+  // show an error to the user
   Materialize.toast('There was an issue changing your password', 3000)
 }
 
-const toggleMenuLinks = (isLoggedIn) => {
-  if (isLoggedIn) {
-    $('a.signed-in').show()
-    $('a.signed-out').hide()
-  } else {
-    $('a.signed-in').hide()
-    $('a.signed-out').show()
-  }
-}
 module.exports = {
   signInSuccess,
   signInFailure,
@@ -99,6 +103,5 @@ module.exports = {
   signOutSuccess,
   signOutFailure,
   changePasswordSuccess,
-  changePasswordFailure,
-  toggleMenuLinks
+  changePasswordFailure
 }
