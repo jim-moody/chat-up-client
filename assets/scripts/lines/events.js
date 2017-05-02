@@ -141,7 +141,7 @@ const onShowEditOptions = (e) => {
   // turn a click handler onto the body so anywhere that a user clicks
   // the dropdown will be hidden, then immediately turn that handler // off
   ul.show('fast', () => {
-    $('body').on('click touchstart', (e) => {
+    $('body').on('click focus', (e) => {
       ul.hide()
       $('body').off()
     })

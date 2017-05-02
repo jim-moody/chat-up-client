@@ -12,8 +12,9 @@ div.nav-content.fixed {
 
 }
 
-nav .brand-logo {
+nav .brand-logo.left {
   margin-left: 1.5rem;
+
 }
 
 .user-dropdown-content {
@@ -46,6 +47,13 @@ nav .brand-logo {
   }
 }
 
+@media only screen and (min-width: 600px) {
+  nav .brand-logo.left {
+    margin-left: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
 
 @media only screen and (max-width: 600px) {
   div.brand-logo.left {
